@@ -1,9 +1,0 @@
-{
-    "files.exclude": {
-        "**/fsh-generated/": true,
-        "**/input-cache/": true,
-        "**/output/": true,
-        "**/temp/": true,
-        "**/template/": true
-    }
-}
