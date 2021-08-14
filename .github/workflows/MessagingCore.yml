@@ -1,0 +1,42 @@
+# This is a simple workflow that runs the publisher and copies the output to https://<owner>.github.io/<repo>/index.html
+# Based on the instructions from Elliot Silver, available from: https://www.argentixinfo.com/archives/156
+# Change log:
+# 2021-06-18: publish ddefault branches to / , other branches branches/<branch>
+
+# Make sure your repo has a branch called gh-pages
+
+name: MessagingCore
+
+on:
+  push:
+    branches: [main]
+    paths: [igs/MessagingCore/**]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name
+        run: echo ${GITHUB_REF##*/}
+      
+      - uses: actions/checkout@v2
+      
+      - name: Update the image to the latest publisher
+        uses: docker://hl7fhir/ig-publisher-base:latest
+        with:
+          # Get the latest publisher - don't run the batch script but run the line directly
+          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
+
+      - name: Run the IG publisher
+        uses: docker://hl7fhir/ig-publisher-base:latest
+        with:
+          # Run the publisher - don't run the batch script but run the line directly
+          args: java -jar ./input-cache/publisher.jar publisher -ig ./igs/${{ github.workflow }}
+
+      - name: Deploy main
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: ./output # The folder the action should deploy.
+          commit-message: Deploy main branch
+          clean-exclude: branches
