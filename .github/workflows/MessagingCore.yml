@@ -1,9 +1,4 @@
-# This is a simple workflow that runs the publisher and copies the output to https://<owner>.github.io/<repo>/index.html
-# Based on the instructions from Elliot Silver, available from: https://www.argentixinfo.com/archives/156
-# Change log:
-# 2021-06-18: publish ddefault branches to / , other branches branches/<branch>
-
-# Make sure your repo has a branch called gh-pages
+# Reference: https://github.com/openhie/empty-fhir-ig/blob/master/.github/workflows/main.yml
 
 name: MessagingCore
 
@@ -11,6 +6,7 @@ on:
   push:
     branches: [main]
     paths: [igs/MessagingCore/**]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -31,7 +27,7 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           # Run the publisher - don't run the batch script but run the line directly
-          args: java -jar ./input-cache/publisher.jar publisher -ig ./igs/${{ github.workflow }}
+          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}
 
       - name: Deploy main
         uses: JamesIves/github-pages-deploy-action@4.1.4
