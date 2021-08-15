@@ -1,0 +1,12 @@
+{
+  "url": "http://fhir.nav.no/ImplementationGuide/messaging-core",
+  "name": "MessagingCore",
+  "package-id": "messaging-core",
+  "ig-ver": "0.1.0",
+  "date": "Sun, 15 Aug, 2021 11:17:07 +0000",
+  "errs": 0,
+  "warnings": 2,
+  "hints": 0,
+  "version": "4.0.1",
+  "tool": "4.6.0 (3)"
+}
