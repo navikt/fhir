@@ -4,5 +4,5 @@ Dette repoet inneholder [FHIR Shorthand](https://build.fhir.org/ig/HL7/fhir-shor
 NAV har valgt å bruke FSH istedenfor [FORGE](https://fire.ly/products/forge/); et GUI verktøy som generer FHIR ressurser, siden det gir bedre kildekodekontroll og lettere lar seg integerere i CI\CD-pipelines.
 
 ## FHIR Implementation Guides (IG)
-IG for de forskjellige FHIR prosjektene til NAV genereres og publiseres som github-pages:
+IG for de forskjellige FHIR prosjektene til NAV genereres og publiseres automatisk som github-pages:
 1. [MessagingCore](https://navikt.github.io/fhir/MessagingCore/)
