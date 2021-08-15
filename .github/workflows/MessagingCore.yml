@@ -1,4 +1,4 @@
-# Reference: https://github.com/openhie/empty-fhir-ig/blob/master/.github/workflows/main.yml
+# Reference: https://github.com/hl7-be/tutorial_ig/blob/master/.github/workflows/main.yml
 
 name: MessagingCore
 
@@ -29,10 +29,10 @@ jobs:
           # Run the publisher - don't run the batch script but run the line directly
           args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}
 
-      - name: Deploy main
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: gh-pages # The branch the action should deploy to.
-          folder: ./igs/${{ github.workflow }}/output # The folder the action should deploy.
-          commit-message: Deploy main branch
-          clean-exclude: branches
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./igs/${{ github.workflow }}/output
+          destination_dir: ${{ github.workflow }}
+          exclude_assets: '**.zip,**.tgz.'
