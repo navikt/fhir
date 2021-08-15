@@ -33,7 +33,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./igs/${{ github.workflow }}/temp/pages
+          publish_dir: ./igs/${{ github.workflow }}/output
+          destination_dir: ${{ github.workflow }}
           exclude_assets: '**.zip,**.tgz,**.pack'
           commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
-          enable_jekyll: true
