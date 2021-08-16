@@ -27,7 +27,7 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           # Run the publisher - don't run the batch script but run the line directly
-          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/
+          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
