@@ -20,8 +20,7 @@ jobs:
       - name: Update the image to the latest publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
-          # Get the latest publisher - don't run the batch script but run the line directly
-          # TODO: Cache the download and only download if new version is available.
+          # TODO: Cache and only download if a newer version is available.
           args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
 
       - name: Run the IG publisher
