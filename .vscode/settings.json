@@ -5,5 +5,13 @@
         "**/output/": true,
         "**/temp/": true,
         "**/template/": true
-    }
+    },
+    "json.schemas": [
+        {
+            "fileMatch": [
+                "**/examples/**/*.json"
+            ],
+            "url": "https://www.hl7.org/fhir/fhir.schema.json"
+        }
+    ]
 }
