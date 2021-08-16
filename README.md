@@ -3,7 +3,7 @@ Dette repoet er tiltenkt å fungerer som et monorepo for kildekoden til alle NAV
 De forskjellige IGene genereres og publiseres automatisk som github-pages:
 1. [MessagingCore](https://navikt.github.io/fhir/MessagingCore/)
 
-## 🍣 FHIR Shorthand og SUSHI
+## 🐟 FHIR Shorthand og SUSHI
 Repoet inneholder [FHIR Shorthand](https://fshschool.org/) (FSH) prosjekter. FSH er et deklarativt og utviklervennelig språk for å definere FHIR ressursene som inngår i profiler. FHIR ressurser genereres vha. [SUSHI](https://github.com/FHIR/sushi); en kompilator som transformerer FSH til FHIR ressurser, dette repoet inneholde derfor ikke FHIR ressurser av type ImplementationGuide, StructureDefinition, CodeSystem, ValueSet etc.
 
 SUSHI vil også benytte **sushi-config.yaml** [for å generere](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#configuration-file) **package-list.json og menu.xml** som kreves av IG Publisher, disse filene er derfor heller ikke med.
