@@ -4,7 +4,8 @@
         "**/input-cache/": true,
         "**/output/": true,
         "**/temp/": true,
-        "**/template/": true
+        "**/template/": true,
+        "**/*.jar": true
     },
     "json.schemas": [
         {

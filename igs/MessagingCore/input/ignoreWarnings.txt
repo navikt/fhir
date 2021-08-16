@@ -1,5 +1,6 @@
 == Suppressed Messages ==
 
+# Required by the IG Publisher, even if no messages are supressed.
 # Add warning and/or information messages here after you've confirmed that they aren't really a problem
 # (And include comments like this justifying why)
 # See https://github.com/FHIR/sample-ig/blob/master/input/ignoreWarnings.txt for examples

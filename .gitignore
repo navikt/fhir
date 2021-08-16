@@ -19,7 +19,7 @@ jspm_packages/
 # Optional npm cache directory
 .npm
 
-# SUSHI
+# SUSHI and IG Publisher
 **/fsh-generated
 **/input-cache
 **/output
@@ -28,3 +28,4 @@ jspm_packages/
 **/_preprocessed
 **/_genonce*
 **/_updatePublisher*
+**/*.jar
