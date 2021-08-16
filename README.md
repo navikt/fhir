@@ -4,20 +4,22 @@ De forskjellige IGene genereres og publiseres automatisk som github-pages:
 1. [MessagingCore](https://navikt.github.io/fhir/MessagingCore/)
 
 ## FHIR Shorthand og SUSHI
-Repoet inneholder [FHIR Shorthand](https://fshschool.org/) (FSH) prosjekter. FSH er et deklarativt og utviklervennelig språk for å definere FHIR ressursene som inngår i profiler. FHIR ressurser genereres vha. [SUSHI](https://github.com/FHIR/sushi); en kompilator som transformerer FSH til FHIR ressurser, dette repoet vil derfor ikke inneholde FHIR ressurser av type ImplementationGuide, StructureDefinition, CodeSystem, ValueSet etc. SUSHI vil også benytte **sushi-config.yaml** [for å generere](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#configuration-file) **package-list.json og menu.xml** som kreves av IG Publisher.
+Repoet inneholder [FHIR Shorthand](https://fshschool.org/) (FSH) prosjekter. FSH er et deklarativt og utviklervennelig språk for å definere FHIR ressursene som inngår i profiler. FHIR ressurser genereres vha. [SUSHI](https://github.com/FHIR/sushi); en kompilator som transformerer FSH til FHIR ressurser, dette repoet inneholde derfor ikke FHIR ressurser av type ImplementationGuide, StructureDefinition, CodeSystem, ValueSet etc.
+
+SUSHI vil også benytte **sushi-config.yaml** [for å generere](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#configuration-file) **package-list.json og menu.xml** som kreves av IG Publisher, disse filene er derfor heller ikke med.
 
 NAV har valgt å bruke FSH istedenfor [Forge](https://fire.ly/products/forge/); et GUI verktøy som generer FHIR ressurser, siden det gir bedre kildekodekontroll og lettere lar seg integerere i CI\CD-pipelines. Forge krever også lisens og fungerer bare på Windows.
 
 ## Bruk av begreper
-I FHIR verden brukes ofte begrepene implementasjonsguide, pakke, profiler og kontrakter\datamodeller om hverandre. Dette kan gjerne være forvirrende og vi skal her prøve å oppklare dette:
+I FHIR verden brukes ofte begrepene implementasjonsguide, pakke, profiler og kontrakter\datamodeller om hverandre. Dette kan være forvirrende og vi skal prøve å oppklare:
 
 * En [FHIR profil](https://www.hl7.org/fhir/profiling.html) er en kontrakt (datamodell+regler) for bruk av en FHIR ressurs (f.eks Patient). En profil er implementert som egne FHIR ressurser (json/xml) laget for dette formålet, f.eks StructureDefinition.
 * En FHIR Implementation Guide er en samling av:
     * FHIR ressurser som utgjør profiler.
     * En HTML side for human-readable dokumentasjon.
-    * Generell metadata implementert som en egen FHIR ressurs som heter [ImplementationGuide](https://www.hl7.org/fhir/implementationguide.html).
+    * Generell metadata implementert som en egen FHIR ressurs som også heter [ImplementationGuide](https://www.hl7.org/fhir/implementationguide.html).
     * Eksempler på FHIR ressurser som er ihht. profilene.
-* En [FHIR NPM Package](https://registry.fhir.org/learn) er IGen pakket som en NPM pakke. Avengigheter til andre IGer er gjenngitt som versionerte dependencies i package.json. En slik pakke kan brukes til validering og testing.
+* En [FHIR NPM Package](https://registry.fhir.org/learn) er IGen pakket som en NPM pakke. Avengigheter til andre IGer er gjenngitt som versionerte dependencies i package.json. En slik pakke kan brukes til validering og testing av FHIR ressurser.
 
 Mao. er det en 1:1:1 mapping mellom FSH-project, IG og FHIR Package.
 
