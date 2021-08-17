@@ -2,12 +2,7 @@ Profile: HopsMessageHeader
 Parent: MessageHeader
 * insert MinDomainResourceRuleSet
 * event[x] only Coding
-  * insert MinElementRuleSet
-  * system 1..1
-  * version 0..0
-  * code 1..1
-  * display 0..0
-  * userSelected 0..0
+  * insert MinCodingRuleSet
 * destination
   * insert MinBackboneElementRuleSet
   * name 0..0
@@ -24,4 +19,10 @@ Parent: MessageHeader
   * contact 0..0
 * responsible 0..0
 * reason 0..0
+* response
+  * insert MinBackboneElementRuleSet
+  * details
+    * insert MinReferenceRuleSet
+* focus
+  * insert MinReferenceRuleSet
 * definition 0..0
