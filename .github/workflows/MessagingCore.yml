@@ -33,6 +33,6 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./igs/${{ github.workflow }}/output
-          destination_dir: ${{ github.workflow }}
+          destination_dir: ./igs/${{ github.workflow }}
           exclude_assets: '**.zip,**.tgz,**.pack'
           commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
