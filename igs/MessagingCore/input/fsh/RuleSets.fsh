@@ -7,6 +7,7 @@ RuleSet: MinBackboneElementRuleSet
 * modifierExtension 0..0
 
 RuleSet: MinDomainResourceRuleSet
+* id obeys valid-uuid
 * meta
   * insert MinElementRuleSet
   * profile 0..0
