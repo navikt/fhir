@@ -1,0 +1,16 @@
+[
+  {
+    "id": "nav.no.messaging.core.r4",
+    "type": "ImplementationGuide",
+    "url": "http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4",
+    "version": "0.1.0",
+    "name": "MessagingCore"
+  },
+  {
+    "id": "hops-message-header",
+    "type": "StructureDefinition",
+    "url": "http://fhir.nav.no/StructureDefinition/hops-message-header",
+    "version": "0.1.0",
+    "name": "HopsMessageHeader"
+  }
+]
