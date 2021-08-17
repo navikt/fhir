@@ -14,5 +14,6 @@
             ],
             "url": "https://www.hl7.org/fhir/fhir.schema.json"
         }
-    ]
+    ],
+    "editor.tabSize": 2
 }
