@@ -6,7 +6,7 @@
   "profiles": {
     "MessageHeader": [
       {
-        "url": "http://fhir.nav.no/StructureDefinition/hops-message-header",
+        "url": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader",
         "title": "HopsMessageHeader"
       }
     ]
@@ -26,6 +26,9 @@
     ],
     "http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet": [
       "StructureDefinition.snapshot.element.binding"
+    ],
+    "http://hl7.org/fhir/StructureDefinition/elementdefinition-translatable": [
+      "StructureDefinition.snapshot.element"
     ],
     "http://hl7.org/fhir/StructureDefinition/structuredefinition-category": [
       "StructureDefinition"

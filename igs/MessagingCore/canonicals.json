@@ -7,9 +7,9 @@
     "name": "MessagingCore"
   },
   {
-    "id": "hops-message-header",
+    "id": "HopsMessageHeader",
     "type": "StructureDefinition",
-    "url": "http://fhir.nav.no/StructureDefinition/hops-message-header",
+    "url": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader",
     "version": "0.1.0",
     "name": "HopsMessageHeader"
   }

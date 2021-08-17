@@ -9,7 +9,7 @@
   "version": "0.1.0",
   "name": "MessagingCore",
   "status": "draft",
-  "date": "2021-08-17T10:51:29+00:00",
+  "date": "2021-08-17T13:00:02+00:00",
   "packageId": "nav.no.messaging.core.r4",
   "license": "CC0-1.0",
   "fhirVersion": [
@@ -274,7 +274,7 @@
           }
         ],
         "reference": {
-          "reference": "StructureDefinition/hops-message-header"
+          "reference": "StructureDefinition/HopsMessageHeader"
         },
         "name": "HopsMessageHeader",
         "exampleBoolean": false
