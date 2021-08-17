@@ -21,16 +21,16 @@ RuleSet: MinDomainResourceRuleSet
 * modifierExtension 0..0
 
 RuleSet: MinReferenceRuleSet
-  * insert MinElementRuleSet
-  * reference 1..1
-  * type 0..0
-  * identifier 0..0
-  * display 0..0
+* insert MinElementRuleSet
+* reference 1..1
+* type 0..0
+* identifier 0..0
+* display 0..0
 
 RuleSet: MinCodingRuleSet
-  * insert MinElementRuleSet
-  * system 1..1
-  * version 0..0
-  * code 1..1
-  * display 0..0
-  * userSelected 0..0
+* insert MinElementRuleSet
+* system 1..1
+* version 0..0
+* code 1..1
+* display 0..0
+* userSelected 0..0
