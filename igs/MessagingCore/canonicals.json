@@ -1,8 +1,8 @@
 [
   {
-    "id": "nav.no.messaging.core.r4",
+    "id": "MessagingCore",
     "type": "ImplementationGuide",
-    "url": "http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4",
+    "url": "http://fhir.nav.no/ImplementationGuide/MessagingCore",
     "version": "0.1.0",
     "name": "MessagingCore"
   },

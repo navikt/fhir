@@ -5,18 +5,18 @@
 
 # - resource -------------------------------------------------------------------
 
-<http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4> a fhir:ImplementationGuide;
+<http://fhir.nav.no/ImplementationGuide/MessagingCore> a fhir:ImplementationGuide;
   fhir:nodeRole fhir:treeRoot;
-  fhir:Resource.id [ fhir:value "nav.no.messaging.core.r4"];
+  fhir:Resource.id [ fhir:value "MessagingCore"];
   fhir:DomainResource.text [
      fhir:Narrative.status [ fhir:value "extensions" ];
-     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4</pre></div>"
+     fhir:Narrative.div "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/MessagingCore</pre></div>"
   ];
-  fhir:ImplementationGuide.url [ fhir:value "http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4"];
+  fhir:ImplementationGuide.url [ fhir:value "http://fhir.nav.no/ImplementationGuide/MessagingCore"];
   fhir:ImplementationGuide.version [ fhir:value "0.1.0"];
   fhir:ImplementationGuide.name [ fhir:value "MessagingCore"];
   fhir:ImplementationGuide.status [ fhir:value "draft"];
-  fhir:ImplementationGuide.date [ fhir:value "2021-08-19T08:03:27+00:00"^^xsd:dateTime];
+  fhir:ImplementationGuide.date [ fhir:value "2021-08-19T13:15:55+00:00"^^xsd:dateTime];
   fhir:ImplementationGuide.packageId [ fhir:value "nav.no.messaging.core.r4"];
   fhir:ImplementationGuide.license [ fhir:value "CC0-1.0"];
   fhir:ImplementationGuide.fhirVersion [
@@ -343,7 +343,7 @@
 
 # - ontology header ------------------------------------------------------------
 
-<http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4.ttl> a owl:Ontology;
+<http://fhir.nav.no/ImplementationGuide/MessagingCore.ttl> a owl:Ontology;
   owl:imports fhir:fhir.ttl .
 
 # -------------------------------------------------------------------------------------
