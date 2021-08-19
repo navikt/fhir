@@ -78,7 +78,7 @@
   <version value="0.1.0"/>
   <name value="HopsMessageHeader"/>
   <status value="active"/>
-  <date value="2021-08-17T14:52:44+00:00"/>
+  <date value="2021-08-19T08:03:27+00:00"/>
   <fhirVersion value="4.0.1"/>
   <mapping>
     <identity value="v2"/>
@@ -195,7 +195,7 @@
         <key value="valid-uuid"/>
         <severity value="error"/>
         <human value="Must be a valid uuid"/>
-        <expression value="$this.empty() or $this.matches(&#39;[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}&#39;)"/>
+        <expression value="$this.matches(&#39;[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}&#39;)"/>
         <source value="http://fhir.nav.no/StructureDefinition/HopsMessageHeader"/>
       </constraint>
       <isModifier value="false"/>
@@ -2622,7 +2622,7 @@
         <key value="valid-uuid"/>
         <severity value="error"/>
         <human value="Must be a valid uuid"/>
-        <expression value="$this.empty() or $this.matches(&#39;[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}&#39;)"/>
+        <expression value="$this.matches(&#39;[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}&#39;)"/>
         <source value="http://fhir.nav.no/StructureDefinition/HopsMessageHeader"/>
       </constraint>
     </element>

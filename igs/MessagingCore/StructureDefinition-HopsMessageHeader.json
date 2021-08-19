@@ -19,7 +19,7 @@
   "version": "0.1.0",
   "name": "HopsMessageHeader",
   "status": "active",
-  "date": "2021-08-17T14:52:44+00:00",
+  "date": "2021-08-19T08:03:27+00:00",
   "fhirVersion": "4.0.1",
   "mapping": [
     {
@@ -155,7 +155,7 @@
             "key": "valid-uuid",
             "severity": "error",
             "human": "Must be a valid uuid",
-            "expression": "$this.empty() or $this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')",
+            "expression": "$this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')",
             "source": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader"
           }
         ],
@@ -3140,7 +3140,7 @@
             "key": "valid-uuid",
             "severity": "error",
             "human": "Must be a valid uuid",
-            "expression": "$this.empty() or $this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')",
+            "expression": "$this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')",
             "source": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader"
           }
         ]

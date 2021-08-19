@@ -25,7 +25,7 @@
   fhir:StructureDefinition.version [ fhir:value "0.1.0"];
   fhir:StructureDefinition.name [ fhir:value "HopsMessageHeader"];
   fhir:StructureDefinition.status [ fhir:value "active"];
-  fhir:StructureDefinition.date [ fhir:value "2021-08-17T14:52:44+00:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2021-08-19T08:03:27+00:00"^^xsd:dateTime];
   fhir:StructureDefinition.fhirVersion [ fhir:value "4.0.1"];
   fhir:StructureDefinition.mapping [
      fhir:index 0;
@@ -173,7 +173,7 @@
          fhir:ElementDefinition.constraint.key [ fhir:value "valid-uuid" ];
          fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
          fhir:ElementDefinition.constraint.human [ fhir:value "Must be a valid uuid" ];
-         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.empty() or $this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')" ];
+         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')" ];
          fhir:ElementDefinition.constraint.source [
            fhir:value "http://fhir.nav.no/StructureDefinition/HopsMessageHeader";
            fhir:link <http://fhir.nav.no/StructureDefinition/HopsMessageHeader>
@@ -3271,7 +3271,7 @@
          fhir:ElementDefinition.constraint.key [ fhir:value "valid-uuid" ];
          fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
          fhir:ElementDefinition.constraint.human [ fhir:value "Must be a valid uuid" ];
-         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.empty() or $this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')" ];
+         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.matches('[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}')" ];
          fhir:ElementDefinition.constraint.source [
            fhir:value "http://fhir.nav.no/StructureDefinition/HopsMessageHeader";
            fhir:link <http://fhir.nav.no/StructureDefinition/HopsMessageHeader>
