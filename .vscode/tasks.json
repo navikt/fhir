@@ -4,13 +4,24 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Run IG Publisher",
+      "label": "Build docker-image",
       "type": "shell",
-      "command": "docker run -it --rm -v ${workspaceFolder}/igs/MessagingCore:/data navikt/fhir-ig-dev navikt/fhir-ig-dev -ig /data/ig.ini",
+      "command": "docker build -t navikt/fhir-ig-dev ${workspaceFolder}",
+      "presentation": {
+        "clear": true
+      }
+    },
+    {
+      "label": "IG Publisher",
+      "type": "shell",
+      "command": "docker run -it --rm -v ${workspaceFolder}/.fhir:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev -ig /data/ig.ini",
       "group": {
         "kind": "build",
         "isDefault": true
-      }
+      },
+      "dependsOn": [
+        "Build docker-image"
+      ]
     }
   ]
 }

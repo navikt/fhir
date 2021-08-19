@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-        "**/fsh-generated/": true,
+        ".fhir": true,
         "**/input-cache/": true,
         "**/output/": true,
         "**/temp/": true,
@@ -9,6 +9,7 @@
     },
     "json.schemas": [
         {
+            // The schema provides IntelliSense when editing json files containing fhir resources (e.g. StructureDefinition). 
             "fileMatch": [
                 "**/examples/**/*.json"
             ],

@@ -20,6 +20,7 @@ jspm_packages/
 .npm
 
 # SUSHI and IG Publisher
+.fhir
 **/fsh-generated
 **/input-cache
 **/output

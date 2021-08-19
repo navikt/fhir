@@ -2,7 +2,8 @@
 # │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: nav.no.messaging.core.r4
+id: MessagingCore
+packageId: nav.no.messaging.core.r4
 canonical: http://fhir.nav.no
 name: MessagingCore
 status: draft
