@@ -1,16 +1,15 @@
 ﻿MessagingCore : Validation Results
 =========================================
 
-err = 0, warn = 3, info = 0
+err = 0, warn = 2, info = 0
 IG Publisher Version: 1.1.77
-Generated Thu Aug 19 13:16:06 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
+Generated Thu Aug 19 15:33:50 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
 
- Build Errors : 11 / 2 / 0
- /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-MessagingCore : 0 / 0 / 1
+ Build Errors : 11 / 1 / 0
+ /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4 : 0 / 0 / 1
  /github/workspace/igs/MessagingCore/fsh-generated/resources/StructureDefinition-HopsMessageHeader : 0 / 1 / 1
 </table>
 == n/a ==
-WARNING: ImplementationGuide.id: The Implementation Guide Resource id should be nav.no.messaging.core.r4
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/HopsMessageHeader.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-definitions.html#/html/body/div/div/div/p/a at Line 893, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-examples.html#/html/body/div/div/div/p/a at Line 233, column 28: The link '' for "" cannot be resolved
@@ -23,6 +22,6 @@ ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessag
 ERROR: /github/workspace/igs/MessagingCore/output/artifacts.html#/html/body/div/div/div/p/a at Line 171, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/index.html#/html/body/div/div/div/p/a at Line 155, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/toc.html#/html/body/div/div/div/p/a at Line 137, column 28: The link '' for "" cannot be resolved
-== /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-MessagingCore.json ==
+== /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4.json ==
 == /github/workspace/igs/MessagingCore/fsh-generated/resources/StructureDefinition-HopsMessageHeader.json ==
 WARNING: StructureDefinition.where(url = 'http://fhir.nav.no/StructureDefinition/HopsMessageHeader'): The Implementation Guide contains no examples for this profile

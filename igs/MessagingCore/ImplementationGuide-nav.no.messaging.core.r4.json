@@ -1,15 +1,15 @@
 {
   "resourceType": "ImplementationGuide",
-  "id": "MessagingCore",
+  "id": "nav.no.messaging.core.r4",
   "text": {
     "status": "extensions",
-    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/MessagingCore</pre></div>"
+    "div": "<div xmlns=\"http://www.w3.org/1999/xhtml\"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4</pre></div>"
   },
-  "url": "http://fhir.nav.no/ImplementationGuide/MessagingCore",
+  "url": "http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4",
   "version": "0.1.0",
   "name": "MessagingCore",
   "status": "draft",
-  "date": "2021-08-19T13:15:55+00:00",
+  "date": "2021-08-19T15:33:42+00:00",
   "packageId": "nav.no.messaging.core.r4",
   "license": "CC0-1.0",
   "fhirVersion": [

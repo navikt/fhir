@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <ImplementationGuide xmlns="http://hl7.org/fhir">
-  <id value="MessagingCore"/>
+  <id value="nav.no.messaging.core.r4"/>
   <text>
-    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/MessagingCore</pre></div>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4</pre></div>
   </text>
-  <url value="http://fhir.nav.no/ImplementationGuide/MessagingCore"/>
+  <url value="http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4"/>
   <version value="0.1.0"/>
   <name value="MessagingCore"/>
   <status value="draft"/>
-  <date value="2021-08-19T13:15:55+00:00"/>
+  <date value="2021-08-19T15:33:42+00:00"/>
   <packageId value="nav.no.messaging.core.r4"/>
   <license value="CC0-1.0"/>
   <fhirVersion value="4.0.1"/>

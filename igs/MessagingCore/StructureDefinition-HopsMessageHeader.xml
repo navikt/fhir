@@ -78,7 +78,7 @@
   <version value="0.1.0"/>
   <name value="HopsMessageHeader"/>
   <status value="active"/>
-  <date value="2021-08-19T13:15:55+00:00"/>
+  <date value="2021-08-19T15:33:42+00:00"/>
   <fhirVersion value="4.0.1"/>
   <mapping>
     <identity value="v2"/>
