@@ -1,6 +1,6 @@
 {
     "files.exclude": {
-        ".fhir": true,
+        "package-cache": true,
         "**/input-cache/": true,
         "**/output/": true,
         "**/temp/": true,
@@ -11,7 +11,7 @@
         {
             // The schema provides IntelliSense when editing json files containing fhir resources (e.g. StructureDefinition). 
             "fileMatch": [
-                "**/examples/**/*.json"
+                "igs/*/input/*/*.json",
             ],
             "url": "https://www.hl7.org/fhir/fhir.schema.json"
         }

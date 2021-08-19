@@ -9,19 +9,40 @@
       "command": "docker build -t navikt/fhir-ig-dev ${workspaceFolder}",
       "presentation": {
         "clear": true
-      }
+      },
+      "problemMatcher": []
     },
     {
-      "label": "IG Publisher",
+      "label": "SUSHI",
       "type": "shell",
-      "command": "docker run -it --rm -v ${workspaceFolder}/.fhir:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev -ig /data/ig.ini",
+      "command": "docker run -it --rm -v ${workspaceFolder}/package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev sushi /data",
       "group": {
         "kind": "build",
         "isDefault": true
       },
       "dependsOn": [
         "Build docker-image"
-      ]
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Validator",
+      "type": "shell",
+      "command": "docker run -it --rm -v ${workspaceFolder}/package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources",
+      "group": "test",
+      "presentation": {
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "IG Publisher",
+      "type": "shell",
+      "command": "docker run -it --rm -v ${workspaceFolder}/package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini",
+      "dependsOn": [
+        "Build docker-image"
+      ],
+      "problemMatcher": []
     }
   ]
 }
