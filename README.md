@@ -1,3 +1,8 @@
+# TL;DR
+Velg en **ig.ini** fil i vscode og trykk **ctrl+shift+b** for å kompilere FSH til FHIR ressurser.
+
+Alternativt kan du generere hele IGen: **velg en ig.ini fil** &rightarrow; **trykk F1** &rightarrow; **Tasks: Run Task** &rightarrow; **IG Publisher**
+
 # Overview
 Dette repoet er tiltenkt å fungerer som et monorepo for kildekoden til alle NAV sine FHIR Implementation Guides (IG).
 De forskjellige IGene genereres og publiseres automatisk som github-pages:
@@ -28,5 +33,52 @@ Mao. er det en 1:1:1 mapping mellom FSH-project, IG og FHIR Package.
 
 Et FSH prosjekt følger en [bestemt struktur](https://fshschool.org/docs/sushi/project/), denne strukturen har likheter med [strukturen som forventes av IG Publisher](https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html). Tidligere var det slik at SUSHI måtte kjøres på et FSH prosjekt for å generere inputten til IG Publisher, men [fra og med v1.0.75 er dette unødvendig](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-publisher-integration-autobuild-configuration).
 
-## 🚀 CI / CD
+## 🚀 CI/CD
 Generering og deployment av IGene gjøres vha. github-actions som kjører IG Publisher og commiter artefaktene (html, css, js, assets) til en egen **gh-pages branch** som hostes med github-pages. Dette kan alternativt bli gjort av HL7 sin [Auto-IG-builder](https://github.com/FHIR/auto-ig-builder), men da mister vi litt fleksibilitet, vi må f.eks bruke domenet `https://build.fhir.org/ig`.
+
+# Development
+For å bygge IGer lokalt må du enten installere SUSHI og IG-Publisher + alle avhengighetene ved å følge de respektive installasjonsveiledningene. Alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
+
+## 🐋 Docker build image
+Fordi transformeringen av et FSH Project til en IG krever mange dependencies (java, nodejs, npm, ruby, jekyll, sushi, ig-publisher etc.) har vi laget en Dockerfile for å bygge et docker-image som inneholder både SUSHI, IG-Publisher og [FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator) + alle nødvendige dependencies. 
+Det er definert vscode-tasks som bygger og bruker dette imaget, hvis du bruker vscode kan du hoppe rett til [seksjonen om vscode](#-visual-studio-code). Følgende er hvordan du kan bruke imaget selv:
+
+Kjør følgende kommando fra root katalogen til dette repoet for å bygge docker-imaget, dette tar ca 4 minutter.
+```
+docker build -t navikt/fhir-ig-dev .
+```
+
+[SUSHI](https://fshschool.org/docs/sushi/running/#running-sushi) kjøres med følgende kommando, dette tar normalt noen sekunder og vil generere en **fsh-generated** katalog med fhir-ressurser innenfor fsh-prosjektet.
+```
+docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev sushi /data
+
+## Eksempel på windows:
+docker run --rm -v c:\repos\fhir\igs\MessagingCore:/data navikt/fhir-ig-dev sushi /data
+```
+
+[FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator#UsingtheFHIRValidator-Runningthevalidator) brukes for å validere fhir-ressurser og f.eks ressursene generert av sushi kan valideres med følgende kommando.
+```
+docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources
+```
+
+[IG-Publisher](https://wiki.hl7.org/IG_Publisher_Documentation#Running_in_command_line_mode) kjøres med følgende kommando, dette tar gjerne 3-4 minutter og vil generere en rekke kataloger innenfor prosjektet.
+```
+docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini
+```
+
+### Package-cache
+Eksemplene over bruker alle [`--rm`](https://docs.docker.com/engine/reference/run/#clean-up---rm) flagget som gjør at containeren slettes etter kjøringen, dette vil si at alle pakker må lastes ned for hver gang og det kan derfor være greit å lage et eget volume for **package-cache**, i tillegg kan det være greit å bruke `-it` flagget slik at du kan bruke *ctrl+c* for å avbryte kjøringer. Eksempel med sushi blir da følgende (gjelder også validator og publisher).
+```
+docker run -it --rm -v package-cache:/root/.fhir -v c:\repos\fhir\igs\MessagingCore:/data navikt/fhir-ig-dev sushi /data
+```
+
+## 👨‍💻 Visual Studio Code
+For utvikling av IGer er det greit å bruke [vscode](https://code.visualstudio.com/).
+
+[vscode-language-fsh](https://marketplace.visualstudio.com/items?itemName=kmahalingam.vscode-language-fsh) extension hjelper med litt syntax highlighting og IntelliSense og skal komme som en [anbefaling](.vscode/extensions.json) når du åpner repoet i vscode.
+
+Vi har lagt til FHIR json skjema referanse i [.vscode/settings.json](.vscode/settings.json) slik at du får IntelliSense dersom du jobber med FHIR json ressurser (ikke FSH) direkte.
+
+Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IGen, disse vil automatisk bygge docker-build-imaget dersom det ikke allerede finnes. For å kjøre en task må du ha åpen **ig.ini** filen til fsh-prosjektet du jobber med. SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre taskene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
+
+![how to run tasks gif](docs/run-task.gif)

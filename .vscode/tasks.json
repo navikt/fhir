@@ -15,7 +15,7 @@
     {
       "label": "SUSHI",
       "type": "shell",
-      "command": "docker run -it --rm -v ${workspaceFolder}/package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev sushi /data",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev sushi /data",
       "group": {
         "kind": "build",
         "isDefault": true
@@ -28,7 +28,7 @@
     {
       "label": "Validator",
       "type": "shell",
-      "command": "docker run -it --rm -v ${workspaceFolder}/package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources",
       "group": "test",
       "presentation": {
         "clear": true
@@ -38,7 +38,7 @@
     {
       "label": "IG Publisher",
       "type": "shell",
-      "command": "docker run -it --rm -v ${workspaceFolder}/package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini",
       "dependsOn": [
         "Build docker-image"
       ],
