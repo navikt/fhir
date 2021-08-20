@@ -1,8 +1,3 @@
-# TL;DR
-Velg en **ig.ini** fil i vscode og trykk **ctrl+shift+b** for å kompilere FSH til FHIR ressurser.
-
-Alternativt kan du generere hele IGen: **velg en ig.ini fil** &rightarrow; **trykk F1** &rightarrow; **Tasks: Run Task** &rightarrow; **IG Publisher**
-
 # Overview
 Dette repoet er tiltenkt å fungerer som et monorepo for kildekoden til alle NAV sine FHIR Implementation Guides (IG).
 De forskjellige IGene genereres og publiseres automatisk som github-pages:
