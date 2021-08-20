@@ -41,7 +41,7 @@ For utvikling av IGer er det greit å bruke [vscode](https://code.visualstudio.c
 
 Vi har lagt til FHIR json skjema referanse i [.vscode/settings.json](.vscode/settings.json) slik at du får IntelliSense dersom du jobber med FHIR json ressurser (ikke FSH) direkte.
 
-Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IGen, disse vil automatisk bygge docker-build-imaget dersom det ikke allerede finnes. For å kjøre en task må du ha åpen **ig.ini** filen til fsh-prosjektet du jobber med. SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre taskene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
+Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IGen, disse vil automatisk bygge docker-build-imaget dersom det ikke allerede finnes, dette tar noen minutter. For å kjøre en task må du ha åpen **ig.ini** filen til fsh-prosjektet du jobber med. SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre taskene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
 
 ![how to run tasks gif](docs/run-task.gif)
 
