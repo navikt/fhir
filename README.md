@@ -32,11 +32,22 @@ Et FSH prosjekt følger en [bestemt struktur](https://fshschool.org/docs/sushi/p
 Generering og deployment av IGene gjøres vha. github-actions som kjører IG Publisher og commiter artefaktene (html, css, js, assets) til en egen **gh-pages branch** som hostes med github-pages. Dette kan alternativt bli gjort av HL7 sin [Auto-IG-builder](https://github.com/FHIR/auto-ig-builder), men da mister vi litt fleksibilitet, vi må f.eks bruke domenet `https://build.fhir.org/ig`.
 
 # Development
-For å bygge IGer lokalt må du enten installere SUSHI og IG-Publisher + alle avhengighetene ved å følge de respektive installasjonsveiledningene. Alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
+For å bygge IGer lokalt trenger du SUSHI, IG-Publisher og alle avhengighetene. Dette kan du installere ved å følge de respektive installasjonsveiledningene, alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
+
+## 👨‍💻 Visual Studio Code
+For utvikling av IGer er det greit å bruke [vscode](https://code.visualstudio.com/).
+
+[vscode-language-fsh](https://marketplace.visualstudio.com/items?itemName=kmahalingam.vscode-language-fsh) extension hjelper med litt syntax highlighting og IntelliSense og skal komme som en [anbefaling](.vscode/extensions.json) når du åpner repoet i vscode.
+
+Vi har lagt til FHIR json skjema referanse i [.vscode/settings.json](.vscode/settings.json) slik at du får IntelliSense dersom du jobber med FHIR json ressurser (ikke FSH) direkte.
+
+Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IGen, disse vil automatisk bygge docker-build-imaget dersom det ikke allerede finnes. For å kjøre en task må du ha åpen **ig.ini** filen til fsh-prosjektet du jobber med. SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre taskene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
+
+![how to run tasks gif](docs/run-task.gif)
 
 ## 🐋 Docker build image
 Fordi transformeringen av et FSH Project til en IG krever mange dependencies (java, nodejs, npm, ruby, jekyll, sushi, ig-publisher etc.) har vi laget en Dockerfile for å bygge et docker-image som inneholder både SUSHI, IG-Publisher og [FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator) + alle nødvendige dependencies. 
-Det er definert vscode-tasks som bygger og bruker dette imaget, hvis du bruker vscode kan du hoppe rett til [seksjonen om vscode](#-visual-studio-code). Følgende er hvordan du kan bruke imaget selv:
+Hvis du bruker vscode og de definerte tasksene trenger du ikke forholde deg til følgende, men her er hvordan du bruker imaget:
 
 Kjør følgende kommando fra root katalogen til dette repoet for å bygge docker-imaget, dette tar ca 4 minutter.
 ```
@@ -66,14 +77,3 @@ Eksemplene over bruker alle [`--rm`](https://docs.docker.com/engine/reference/ru
 ```
 docker run -it --rm -v package-cache:/root/.fhir -v c:\repos\fhir\igs\MessagingCore:/data navikt/fhir-ig-dev sushi /data
 ```
-
-## 👨‍💻 Visual Studio Code
-For utvikling av IGer er det greit å bruke [vscode](https://code.visualstudio.com/).
-
-[vscode-language-fsh](https://marketplace.visualstudio.com/items?itemName=kmahalingam.vscode-language-fsh) extension hjelper med litt syntax highlighting og IntelliSense og skal komme som en [anbefaling](.vscode/extensions.json) når du åpner repoet i vscode.
-
-Vi har lagt til FHIR json skjema referanse i [.vscode/settings.json](.vscode/settings.json) slik at du får IntelliSense dersom du jobber med FHIR json ressurser (ikke FSH) direkte.
-
-Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IGen, disse vil automatisk bygge docker-build-imaget dersom det ikke allerede finnes. For å kjøre en task må du ha åpen **ig.ini** filen til fsh-prosjektet du jobber med. SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre taskene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
-
-![how to run tasks gif](docs/run-task.gif)
