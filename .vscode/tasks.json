@@ -30,9 +30,9 @@
       "type": "shell",
       "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources",
       "group": "test",
-      "presentation": {
-        "clear": true
-      },
+      "dependsOn": [
+        "Build docker-image"
+      ],
       "problemMatcher": []
     },
     {
@@ -42,6 +42,17 @@
       "dependsOn": [
         "Build docker-image"
       ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "windows": {
+        "command": "rm -recurse ${workspaceFolder}\\igs\\*\\fsh-generated, ${workspaceFolder}\\igs\\*\\input-cache, ${workspaceFolder}\\igs\\*\\output, ${workspaceFolder}\\igs\\*\\temp, ${workspaceFolder}\\igs\\*\\template"
+      },
+      "presentation": {
+        "clear": true
+      },
       "problemMatcher": []
     }
   ]
