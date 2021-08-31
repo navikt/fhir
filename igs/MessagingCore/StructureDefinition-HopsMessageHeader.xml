@@ -79,7 +79,7 @@
   <version value="0.1.0"/>
   <name value="HopsMessageHeader"/>
   <status value="active"/>
-  <date value="2021-08-31T10:02:17+00:00"/>
+  <date value="2021-08-31T10:14:50+00:00"/>
   <fhirVersion value="4.0.1"/>
   <mapping>
     <identity value="v2"/>
@@ -1337,7 +1337,7 @@
       </type>
       <example>
         <label value="Fully qualified HER-id"/>
-        <valueString value="urn:oid:2.16.578.1.12.4.1.2.131725"/>
+        <valueUrl value="urn:oid:2.16.578.1.12.4.1.2.131725"/>
       </example>
       <constraint>
         <key value="ele-1"/>
@@ -2744,7 +2744,7 @@
       <path value="MessageHeader.destination.endpoint"/>
       <example>
         <label value="Fully qualified HER-id"/>
-        <valueString value="urn:oid:2.16.578.1.12.4.1.2.131725"/>
+        <valueUrl value="urn:oid:2.16.578.1.12.4.1.2.131725"/>
       </example>
       <constraint>
         <key value="valid-her-id"/>
