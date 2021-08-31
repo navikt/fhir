@@ -3,7 +3,7 @@
 
 err = 0, warn = 2, info = 0
 IG Publisher Version: 1.1.77
-Generated Tue Aug 31 09:18:59 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
+Generated Tue Aug 31 10:02:25 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
 
  Build Errors : 11 / 1 / 0
  /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4 : 0 / 0 / 1
@@ -11,14 +11,14 @@ Generated Tue Aug 31 09:18:59 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.
 </table>
 == n/a ==
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/HopsMessageHeader.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-definitions.html#/html/body/div/div/div/p/a at Line 893, column 28: The link '' for "" cannot be resolved
+ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-definitions.html#/html/body/div/div/div/p/a at Line 895, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-examples.html#/html/body/div/div/div/p/a at Line 233, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-mappings.html#/html/body/div/div/div/p/a at Line 276, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.html#/html/body/div/div/div/p/a at Line 730, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.history.html#/html/body/div/div/div/p/a at Line 222, column 28: The link '' for "" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.json.html#/html/body/div/div/div/p/a at Line 3683, column 28: The link '' for "" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.ttl.html#/html/body/div/div/div/p/a at Line 3201, column 28: The link '' for "" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.xml.html#/html/body/div/div/div/p/a at Line 3340, column 28: The link '' for "" cannot be resolved
+ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.json.html#/html/body/div/div/div/p/a at Line 3695, column 28: The link '' for "" cannot be resolved
+ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.ttl.html#/html/body/div/div/div/p/a at Line 3209, column 28: The link '' for "" cannot be resolved
+ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.xml.html#/html/body/div/div/div/p/a at Line 3346, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/artifacts.html#/html/body/div/div/div/p/a at Line 171, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/index.html#/html/body/div/div/div/p/a at Line 155, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/toc.html#/html/body/div/div/div/p/a at Line 137, column 28: The link '' for "" cannot be resolved
