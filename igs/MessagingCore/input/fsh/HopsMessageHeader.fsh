@@ -10,7 +10,7 @@ Parent: MessageHeader
   * endpoint
     * obeys valid-her-id
     * ^example.label = "Fully qualified HER-id"
-    * ^example.valueString = "urn:oid:2.16.578.1.12.4.1.2.131725"
+    * ^example.valueUrl = "urn:oid:2.16.578.1.12.4.1.2.131725"
   * receiver 0..0
 * sender 0..0
 * enterer 0..0
