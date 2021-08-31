@@ -9,7 +9,7 @@
   <version value="0.1.0"/>
   <name value="MessagingCore"/>
   <status value="draft"/>
-  <date value="2021-08-31T10:14:50+00:00"/>
+  <date value="2021-08-31T14:10:38+00:00"/>
   <packageId value="nav.no.messaging.core.r4"/>
   <license value="CC0-1.0"/>
   <fhirVersion value="4.0.1"/>
@@ -166,6 +166,16 @@
         <valueString value="true"/>
       </extension>
     </extension>
+    <resource>
+      <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
+        <valueString value="StructureDefinition:resource"/>
+      </extension>
+      <reference>
+        <reference value="StructureDefinition/HopsMessage"/>
+      </reference>
+      <name value="HopsMessage"/>
+      <exampleBoolean value="false"/>
+    </resource>
     <resource>
       <extension url="http://hl7.org/fhir/tools/StructureDefinition/resource-information">
         <valueString value="StructureDefinition:resource"/>

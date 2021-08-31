@@ -4,6 +4,12 @@
   "fhirVersion": "4.0.1",
   "extensions": [],
   "profiles": {
+    "Bundle": [
+      {
+        "url": "http://fhir.nav.no/StructureDefinition/HopsMessage",
+        "title": "HopsMessage"
+      }
+    ],
     "MessageHeader": [
       {
         "url": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader",

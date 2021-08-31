@@ -7,6 +7,13 @@
     "name": "MessagingCore"
   },
   {
+    "id": "HopsMessage",
+    "type": "StructureDefinition",
+    "url": "http://fhir.nav.no/StructureDefinition/HopsMessage",
+    "version": "0.1.0",
+    "name": "HopsMessage"
+  },
+  {
     "id": "HopsMessageHeader",
     "type": "StructureDefinition",
     "url": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader",
