@@ -7,6 +7,7 @@ Parent: MessageHeader
   * insert MinBackboneElementRuleSet
   * name 0..0
   * target 0..0
+  * endpoint obeys valid-her-id
   * receiver 0..0
 * sender 0..0
 * enterer 0..0
