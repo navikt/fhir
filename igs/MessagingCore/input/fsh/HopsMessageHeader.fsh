@@ -1,10 +1,13 @@
 Profile: HopsMessageHeader
 Parent: MessageHeader
 * insert MinDomainResourceRuleSet
+* id 1..1
 * event[x] only Coding
   * insert MinCodingRuleSet
 * destination
-  * insert MinBackboneElementRuleSet
+  * id 0..0
+  * extension 0..0
+  * modifierExtension 0..0
   * name 0..0
   * target 0..0
   * endpoint
@@ -16,7 +19,9 @@ Parent: MessageHeader
 * enterer 0..0
 * author 0..0
 * source
-  * insert MinBackboneElementRuleSet
+  * id 0..0
+  * extension 0..0
+  * modifierExtension 0..0
   * name 0..0
   * software 0..0
   * version 0..0
@@ -24,7 +29,9 @@ Parent: MessageHeader
 * responsible 0..0
 * reason 0..0
 * response
-  * insert MinBackboneElementRuleSet
+  * id 0..0
+  * extension 0..0
+  * modifierExtension 0..0
   * details
     * insert MinReferenceRuleSet
 * focus
