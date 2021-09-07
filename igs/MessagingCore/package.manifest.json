@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
   "fhirVersion": "[4.0.1]",
-  "date": "20210831140806",
+  "date": "20210907153548",
   "name": "nav.no.messaging.core.r4"
 }
