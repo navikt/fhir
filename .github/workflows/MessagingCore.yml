@@ -54,7 +54,7 @@ jobs:
           version: ${{ steps.sushi_config.outputs.version }}
 
       - name: my-changes
-        run: echo "Body: ${{ steps.changelog.outputs.changes }}"
+        run: echo "${{ steps.changelog.outputs.changes }}"
 
       # - name: 🏷️ Push release tag
       #   uses: actions-ecosystem/action-push-tag@v1
