@@ -26,14 +26,14 @@ jobs:
         with:
           args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
 
-      - name: 🚀 Deploy to GitHub-Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./igs/${{ github.workflow }}/output
-          destination_dir: ./igs/${{ github.workflow }}
-          exclude_assets: '**.zip,**.tgz,**.pack'
-          commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
+      # - name: 🚀 Deploy to GitHub-Pages
+      #   uses: peaceiris/actions-gh-pages@v3
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./igs/${{ github.workflow }}/output
+      #     destination_dir: ./igs/${{ github.workflow }}
+      #     exclude_assets: '**.zip,**.tgz,**.pack'
+      #     commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
 
       - name: Get Id and Version
         uses: CumulusDS/get-yaml-paths-action@v0.1.0
