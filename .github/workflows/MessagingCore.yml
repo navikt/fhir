@@ -11,15 +11,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:          
-      - name: Get URL of latest IG Publisher
+      - name: 🔎 Get URL of latest IG Publisher
         id: latest-publisher
         run: |
           echo "::set-output name=URL::$( \
-            curl -SSL https://github.com/HL7/fhir-ig-publisher/releases/latest \
+            curl -SSL https://api.github.com/repos/HL7/fhir-ig-publisher/releases/latest \
             | jq .assets[0] | jq .browser_download_url -r \
           )"
 
-      - name: Cache IG Publisher
+      - name: 💾 Setup IG Publisher cache
         uses: actions/cache@v2
         id: publisher-cache
         with:
@@ -32,7 +32,8 @@ jobs:
           echo Downloading: ${{ steps.latest-publisher.outputs.URL }}
           curl -L ${{ steps.latest-publisher.outputs.URL }} -o ./input-cache/publisher.jar --create-dirs
 
-      - uses: actions/checkout@v2
+      - name: 📝 Checkout branch
+        uses: actions/checkout@v2
 
       - name: 📦 Run the IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
