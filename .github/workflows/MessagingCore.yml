@@ -16,15 +16,12 @@ jobs:
       - name: ↩️ Checkout branch
         uses: actions/checkout@v2
 
-      - name: 📥 Download latest IG Publisher
-        uses: docker://hl7fhir/ig-publisher-base:latest
-        with:
-          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
-
       - name: 📦 Run the IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
-          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
+          args: |
+            curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs && \
+            java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
 
       # - name: 🚀 Deploy to GitHub-Pages
       #   uses: peaceiris/actions-gh-pages@v3
@@ -35,7 +32,7 @@ jobs:
       #     exclude_assets: '**.zip,**.tgz,**.pack'
       #     commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
 
-      - name: Get Id and Version
+      - name: 🔖 Get Id and Version
         uses: CumulusDS/get-yaml-paths-action@v0.1.0
         id: sushi_config
         with:
@@ -43,19 +40,24 @@ jobs:
           id: id
           version: version
 
-      - name: Get Changelog Entry
+      - name: 📄 Get Changelog Entry
         uses: mindsers/changelog-reader-action@v2
-        id: changelog_reader
+        id: changelog
         with:
           path: ./igs/${{ github.workflow }}/input/pagecontent/CHANGELOG.md
-          version: ${{ steps.changelog_reader.outputs.version }}
+          version: ${{ steps.changelog.outputs.version }}
 
-      - name: 📫 Create release
+      - name: 🏷️ Push release tag
+        uses: actions-ecosystem/action-push-tag@v1
+        with:
+          tag: ${{ steps.changelog.outputs.id }}@${{ steps.changelog.outputs.version }}
+
+      - name: 📮 Create release
         uses: softprops/action-gh-release@v1
         with:
-          name: ${{ steps.changelog_reader.outputs.id }}@${{ steps.changelog_reader.outputs.version }}
-          body: ${{ steps.changelog_reader.outputs.changes }}
-          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
-          draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
+          tag_name: ${{ steps.changelog.outputs.id }}@${{ steps.changelog.outputs.version }}
+          body: ${{ steps.changelog.outputs.changes }}
+          prerelease: ${{ steps.changelog.outputs.status == 'prereleased' }}
+          draft: ${{ steps.changelog.outputs.status == 'unreleased' }}
           files: |
             ./igs/${{ github.workflow }}/output/package.tgz
