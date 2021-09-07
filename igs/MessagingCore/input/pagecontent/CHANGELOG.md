@@ -7,8 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.1.0] - 2021-01-01
+## [0.1.1] - 2021-01-01
 
 ### Added
+- Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+- Nam at dui sed ligula commodo mattis.
+- Nulla cursus augue non egestas consectetur.
 
-- Initial
+### Changed
+- Suspendisse placerat diam a mattis mattis.
+
+### Fixed
+- Cras nec enim tincidunt lorem sagittis vehicula ac et leo.
+- Nullam sagittis risus eu pharetra euismod.

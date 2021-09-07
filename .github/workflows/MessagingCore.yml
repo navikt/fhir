@@ -13,8 +13,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: ↩️ Checkout branch
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
       - name: 📥 Download IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
@@ -43,24 +42,22 @@ jobs:
           id: id
           version: version
 
-      - name: 📄 Get Changelog Entry
+      - name: 📄 Get Changelog
         uses: mindsers/changelog-reader-action@v2
         id: changelog
         with:
           path: ./igs/${{ github.workflow }}/input/pagecontent/CHANGELOG.md
           version: ${{ steps.sushi_config.outputs.version }}
 
-      - name: 🏷️ Push release tag
+      - name: 🏷️ Push Release Tag
         uses: actions-ecosystem/action-push-tag@v1
         with:
           tag: ${{ steps.sushi_config.outputs.id }}@${{ steps.sushi_config.outputs.version }}
 
-      - name: 📮 Create release
+      - name: 📮 Create Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ steps.sushi_config.outputs.id }}@${{ steps.sushi_config.outputs.version }}
           body: ${{ steps.changelog.outputs.changes }}
-          prerelease: ${{ steps.changelog.outputs.status == 'prereleased' }}
-          draft: ${{ steps.changelog.outputs.status == 'unreleased' }}
           files: |
             ./igs/${{ github.workflow }}/output/package.tgz
