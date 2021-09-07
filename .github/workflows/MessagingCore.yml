@@ -24,7 +24,7 @@ jobs:
       - name: 📦 Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
-          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.inijava -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
+          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
 
       - name: 🚀 Deploy to GitHub-Pages
         uses: peaceiris/actions-gh-pages@v3
