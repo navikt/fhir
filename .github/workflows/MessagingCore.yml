@@ -43,7 +43,8 @@ jobs:
           id: id
           version: version
 
-      - run: echo "Tag: ${{ steps.sushi_config.outputs.id }}@${{ steps.sushi_config.outputs.version }}"
+      - name: my-tag
+        run: echo "Tag: ${{ steps.sushi_config.outputs.id }}@${{ steps.sushi_config.outputs.version }}"
 
       - name: 📄 Get Changelog Entry
         uses: mindsers/changelog-reader-action@v2
@@ -52,7 +53,8 @@ jobs:
           path: ./igs/${{ github.workflow }}/input/pagecontent/CHANGELOG.md
           version: ${{ steps.sushi_config.outputs.version }}
 
-      - run: echo "Body: ${{ steps.changelog.outputs.changes }}"
+      - name: my-changes
+        run: echo "Body: ${{ steps.changelog.outputs.changes }}"
 
       # - name: 🏷️ Push release tag
       #   uses: actions-ecosystem/action-push-tag@v1
