@@ -1,4 +1,4 @@
-# Workflow name must match the IG directory name.
+# Name must match the IG's directory name.
 name: MessagingCore
 
 on:
@@ -7,6 +7,8 @@ on:
     paths: [igs/MessagingCore/**]
   workflow_dispatch:
 
+# The following jobs are equal for all IGs and can be moved to a common composite-action if 'uses'-support is added, see:
+# https://github.com/actions/runner/blob/main/docs/adrs/1144-composite-actions.md
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,4 +34,28 @@ jobs:
           destination_dir: ./igs/${{ github.workflow }}
           exclude_assets: '**.zip,**.tgz,**.pack'
           commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
-          
+
+      - name: Get Id and Version
+        uses: CumulusDS/get-yaml-paths-action@v0.1.0
+        id: sushi_config
+        with:
+          file: ./igs/${{ github.workflow }}/sushi-config.yaml
+          id: id
+          version: version
+
+      - name: Get Changelog Entry
+        uses: mindsers/changelog-reader-action@v2
+        id: changelog_reader
+        with:
+          path: ./igs/${{ github.workflow }}/input/pagecontent/CHANGELOG.md
+          version: ${{ steps.changelog_reader.outputs.version }}
+
+      - name: 📫 Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.changelog_reader.outputs.id }}@${{ steps.changelog_reader.outputs.version }}
+          body: ${{ steps.changelog_reader.outputs.changes }}
+          prerelease: ${{ steps.changelog_reader.outputs.status == 'prereleased' }}
+          draft: ${{ steps.changelog_reader.outputs.status == 'unreleased' }}
+          files: |
+            ./igs/${{ github.workflow }}/output/package.tgz
