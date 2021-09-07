@@ -10,32 +10,26 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:          
-      - name: 🔎 Get URL of latest IG Publisher
-        id: latest-publisher
-        run: |
-          echo "::set-output name=URL::$( \
-            curl -SSL https://api.github.com/repos/HL7/fhir-ig-publisher/releases/latest \
-            | jq .assets[0] | jq .browser_download_url -r \
-          )"
-
-      - name: 💾 Setup IG Publisher cache
-        uses: actions/cache@v2
-        id: publisher-cache
-        with:
-          path: ./input-cache
-          key: ${{ runner.os }}-${{ steps.latest-publisher.outputs.URL }}
+    steps:
+      - name: ↩️ Checkout branch
+        uses: actions/checkout@v2
 
       - name: 📥 Download latest IG Publisher
-        if: steps.publisher-cache.outputs.cache-hit != 'true'
-        run: |
-          echo Downloading: ${{ steps.latest-publisher.outputs.URL }}
-          curl -L ${{ steps.latest-publisher.outputs.URL }} -o ./input-cache/publisher.jar --create-dirs
-
-      - name: 📝 Checkout branch
-        uses: actions/checkout@v2
+        uses: docker://hl7fhir/ig-publisher-base:latest
+        with:
+          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
 
       - name: 📦 Run the IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
+
+      - name: 🚀 Deploy to GitHub-Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./igs/${{ github.workflow }}/output
+          destination_dir: ./igs/${{ github.workflow }}
+          exclude_assets: '**.zip,**.tgz,**.pack'
+          commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
+          
