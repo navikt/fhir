@@ -16,10 +16,15 @@ jobs:
       - name: ↩️ Checkout branch
         uses: actions/checkout@v2
 
+      - name: 📥 Download IG Publisher
+        uses: docker://hl7fhir/ig-publisher-base:latest
+        with:
+          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
+
       - name: 📦 Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
-          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs && java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
+          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.inijava -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
 
       # - name: 🚀 Deploy to GitHub-Pages
       #   uses: peaceiris/actions-gh-pages@v3
