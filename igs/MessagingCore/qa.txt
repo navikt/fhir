@@ -3,7 +3,7 @@
 
 err = 0, warn = 4, info = 0
 IG Publisher Version: 1.1.79
-Generated Tue Sep 07 15:36:28 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
+Generated Tue Sep 07 16:05:08 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
 
  Build Errors : 20 / 2 / 0
  /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4 : 0 / 0 / 1
@@ -13,7 +13,7 @@ Generated Tue Sep 07 15:36:28 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.
 == n/a ==
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/HopsMessage.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/HopsMessageHeader.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-ERROR: /github/workspace/igs/MessagingCore/output/CHANGELOG.html#/html/body/div/div/div/p/a at Line 168, column 28: The link '' for "" cannot be resolved
+ERROR: /github/workspace/igs/MessagingCore/output/CHANGELOG.html#/html/body/div/div/div/p/a at Line 192, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage-definitions.html#/html/body/div/div/div/p/a at Line 1023, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage-examples.html#/html/body/div/div/div/p/a at Line 233, column 28: The link '' for "" cannot be resolved
 ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage-mappings.html#/html/body/div/div/div/p/a at Line 274, column 28: The link '' for "" cannot be resolved

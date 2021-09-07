@@ -43,7 +43,7 @@
   <version value="0.1.0"/>
   <name value="HopsMessage"/>
   <status value="active"/>
-  <date value="2021-09-07T15:36:17+00:00"/>
+  <date value="2021-09-07T16:04:57+00:00"/>
   <fhirVersion value="4.0.1"/>
   <mapping>
     <identity value="v2"/>
