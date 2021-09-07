@@ -62,6 +62,8 @@ jobs:
         id: check_tag
         with: 
           tag: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # A commit-tag is needed when creating a release.
       # This step will push a new tag on the current commit with the format: {package-id}-{version}.
