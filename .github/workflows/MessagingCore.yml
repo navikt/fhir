@@ -40,7 +40,7 @@ jobs:
 
       # Gets the IG's id and version from the sushi-config.yaml file, this is needed to create the unique package/release name.
       - name: 🔖 Get Id and Version
-        uses: CumulusDS/get-yaml-paths-action@v0
+        uses: CumulusDS/get-yaml-paths-action@v0.1.0
         id: sushi_config
         with:
           file: ./igs/${{ github.workflow }}/sushi-config.yaml
@@ -58,7 +58,7 @@ jobs:
 
       # Checks if the Release already exists, if it does we do not want to overwrite it because a release should be immutable.
       - name: ❔ Check if Release exists
-        uses: mukunku/tag-exists-action@v1
+        uses: mukunku/tag-exists-action@v1.0.0
         id: check_tag
         with: 
           tag: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
