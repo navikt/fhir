@@ -79,7 +79,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          name: ${{ github.workflow }}-${{ steps.sushi_config.outputs.version }}
+          name: ${{ github.workflow }} v${{ steps.sushi_config.outputs.version }}
           tag_name: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
           body: ${{ steps.changelog.outputs.changes }}
           files: |
