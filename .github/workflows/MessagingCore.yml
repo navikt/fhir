@@ -40,7 +40,7 @@ jobs:
 
       # Gets the IG's id and version from the sushi-config.yaml file, this is needed to create the unique package/release name.
       - name: 🆔 Get Id and Version
-        uses: CumulusDS/get-yaml-paths-action@v0.1.0
+        uses: CumulusDS/get-yaml-paths-action@v0.1.1
         id: sushi_config
         with:
           file: ./igs/${{ github.workflow }}/sushi-config.yaml
