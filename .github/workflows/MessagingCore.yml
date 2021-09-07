@@ -10,7 +10,7 @@ on:
 # The following jobs are equal for all IGs and can be moved to a common composite-action if 'uses'-support is added, see:
 # https://github.com/actions/runner/blob/main/docs/adrs/1144-composite-actions.md
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,7 +22,7 @@ jobs:
           args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
 
       # Builds the HTML page for the IG and a NPM Package for distribution.
-      - name: 📦 Run IG Publisher
+      - name: 🏃‍♂️ Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
@@ -39,7 +39,7 @@ jobs:
           commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
 
       # Gets the IG's id and version from the sushi-config.yaml file, this is needed to create the unique package/release name.
-      - name: 🔖 Get Id and Version
+      - name: 🆔 Get Id and Version
         uses: CumulusDS/get-yaml-paths-action@v0.1.0
         id: sushi_config
         with:
@@ -66,16 +66,16 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # A commit-tag is needed when creating a release.
-      # This step will push a new tag on the current commit with the format: {package-id}-{version}.
+      # This step will push a new tag on the current commit with the format: {package-id}-{version}, unless it already exists.
       - name: 🏷️ Push Release Tag
         uses: actions-ecosystem/action-push-tag@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
           tag: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
 
-      # Creates a new GitHub Release with a NPM Package containing the FHIR Profiles.
+      # Creates a new GitHub Release with a NPM Package containing the FHIR Profiles, unless it already exists.
       # This package is ready to be published to the FHIR Package Registry.
-      - name: 📮 Create Release
+      - name: 📦 Create Release
         uses: softprops/action-gh-release@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
