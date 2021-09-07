@@ -1,5 +1,4 @@
-# Reference: https://github.com/hl7-be/tutorial_ig/blob/master/.github/workflows/main.yml
-
+# Workflow name must match the IG directory name.
 name: MessagingCore
 
 on:
@@ -11,28 +10,31 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Get branch name
-        run: echo ${GITHUB_REF##*/}
-      
-      - uses: actions/checkout@v2
-      
-      - name: Update the image to the latest publisher
-        uses: docker://hl7fhir/ig-publisher-base:latest
-        with:
-          # TODO: Cache and only download if a newer version is available.
-          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
+    steps:          
+      - name: Get URL of latest IG Publisher
+        id: latest-publisher
+        run: |
+          echo "::set-output name=URL::$( \
+            curl -SSL https://github.com/HL7/fhir-ig-publisher/releases/latest \
+            | jq .assets[0] | jq .browser_download_url -r \
+          )"
 
-      - name: Run the IG publisher
+      - name: Cache IG Publisher
+        uses: actions/cache@v2
+        id: publisher-cache
+        with:
+          path: ./input-cache
+          key: ${{ runner.os }}-${{ steps.latest-publisher.outputs.URL }}
+
+      - name: 📥 Download latest IG Publisher
+        if: steps.publisher-cache.outputs.cache-hit != 'true'
+        run: |
+          echo Downloading: ${{ steps.latest-publisher.outputs.URL }}
+          curl -L ${{ steps.latest-publisher.outputs.URL }} -o ./input-cache/publisher.jar --create-dirs
+
+      - uses: actions/checkout@v2
+
+      - name: 📦 Run the IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
           args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./igs/${{ github.workflow }}/output
-          destination_dir: ./igs/${{ github.workflow }}
-          exclude_assets: '**.zip,**.tgz,**.pack'
-          commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
