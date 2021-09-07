@@ -44,7 +44,7 @@ jobs:
           version: version
 
       - name: my-tag
-        run: echo "Tag: ${{ steps.sushi_config.outputs.id }}@${{ steps.sushi_config.outputs.version }}"
+        run: echo "Tag: ${{ steps.sushi_config.outputs.id }} ${{ steps.sushi_config.outputs.version }}"
 
       - name: 📄 Get Changelog Entry
         uses: mindsers/changelog-reader-action@v2
