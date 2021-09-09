@@ -12,9 +12,10 @@ jobs:
       - name: ❔ Check if image exists
         id: check_image
         run: |
-          if [[ $(docker manifest inspect ${{ env.IMAGE }}) ]]
-          then; echo "::set-output name=exists::true"
-          else; echo "::set-output name=exists::false"
+          if [[ $(docker manifest inspect ${{ env.IMAGE }}) ]]; then
+            echo "::set-output name=exists::true"
+          else
+            echo "::set-output name=exists::false"
           fi
 
       - name: print
