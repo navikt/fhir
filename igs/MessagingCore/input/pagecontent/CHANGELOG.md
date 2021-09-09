@@ -18,5 +18,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Suspendisse placerat diam a mattis mattis.
 
 ### Fixed
-- Cras nec enim tincidunt lorem sagittis vehicula ac et leo.
+- Cras nec enim tincidujnt lorem sagittis vehicula ac et leo.
 - Nullam sagittis risus eu pharetra euismod.
