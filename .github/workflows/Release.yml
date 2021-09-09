@@ -26,12 +26,16 @@ jobs:
           id: id
           version: version
 
+      - name: Create tag env.
+        run: |
+          echo "TAG=${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}" >> $GITHUB_ENV
+
       # Checks if the Release already exists, if it does we do not want to overwrite it because a release should be immutable.
       - name: ❔ Check if Release exists
         uses: mukunku/tag-exists-action@v1.0.0
         id: check_tag
         with: 
-          tag: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
+          tag: ${{ env.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -39,7 +43,7 @@ jobs:
       # Will fail the workflow if an entry is missing, this is intentional behavior.
       - name: 📄 Get Changelog Entry
         uses: mindsers/changelog-reader-action@v2
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists }}
         id: changelog
         with:
           path: igs/${{ matrix.ig }}/input/pagecontent/CHANGELOG.md
@@ -48,14 +52,14 @@ jobs:
       # Downloads the newest version of the IG Publisher, this could probable be cached.
       - name: 📥 Download IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists }}
         with:
           args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
 
       # Builds the NPM Package for distribution.
       - name: 🏃‍♂️ Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists }}
         with:
           args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ matrix.ig }}/ig.ini
 
@@ -63,18 +67,18 @@ jobs:
       # This step will push a new tag on the current commit with the format: {package-id}-{version}, unless it already exists.
       - name: 🏷️ Push Release Tag
         uses: actions-ecosystem/action-push-tag@v1
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists }}
         with:
-          tag: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
+          tag: ${{ env.TAG }}
 
       # Creates a new GitHub Release with a NPM Package containing the FHIR Profiles, unless it already exists.
       # This package is ready to be published to the FHIR Package Registry.
       - name: 📦 Create Release
         uses: softprops/action-gh-release@v1
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists }}
         with:
           name: ${{ matrix.ig }} v${{ steps.sushi_config.outputs.version }}
-          tag_name: ${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}
+          tag_name: ${{ env.TAG }}
           body: ${{ steps.changelog.outputs.changes }}
           files: |
             igs/${{ matrix.ig }}/output/package.tgz
