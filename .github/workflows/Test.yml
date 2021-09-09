@@ -1,42 +1,21 @@
 name: Test
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [main]
 
 jobs:
   setup:
     runs-on: ubuntu-latest
-    outputs:
-      apps: ${{ steps.diff.outputs.apps }}
     steps:
-      - id: diff
-        run: echo "::set-output name=apps::[hops-api, hops-eventstore]"
-  
-  test:
-    needs: setup
-    strategy:
-      fail-fast: false
-      matrix:
-        app: ${{ needs.setup.outputs.apps }}
-    env:
-      IMAGE: ghcr.io/navikt/${{ matrix.app }}:e564a55271271bf3aecadf263ba61d6a00014f7e
-    runs-on: ubuntu-latest
-    steps:
-      - name: ❔ Check if image exists
-        id: check_image
+      - name: Check if changes are relevant
+        id: diff
+        uses: tj-actions/changed-files@v1.1.2
+        with:
+          files: |
+            igs/MessagingCore/*
+      
+      - name: changes?
         run: |
-          if [[ $(docker manifest inspect ${{ env.IMAGE }}) ]]; then
-            echo "::set-output name=exists::true"
-          else
-            echo "::set-output name=exists::false"
-          fi
-
-      - name: print
-        if: ${{ steps.check_image.outputs.exists }}
-        run: |
-          echo "Image exists!"
-
-      - name: print
-        if: ${{ steps.check_image.outputs.exists }}
-        run: |
-          echo "Image does not exists!"
+          echo ${{ steps.diff.outputs.any_changed }}
+          echo ${{ steps.diff.outputs.all_changed_and_modified_files }}
