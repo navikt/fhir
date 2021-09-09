@@ -9,7 +9,8 @@ jobs:
       matrix: ${{ steps.diff.outputs.apps }}
     steps:
       - id: diff
-      - run: echo "::set-output name=apps::[hops-api, hops-eventstore]"
+        run: echo "::set-output name=apps::[hops-api, hops-eventstore]"
+  
   test:
     needs: setup
     strategy:
