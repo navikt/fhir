@@ -1,8 +1,11 @@
 name: Test
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'Name of app to deploy, e.g. hops-api'
+        required: true
 
 jobs:
   setup:
@@ -19,13 +22,17 @@ jobs:
           files: |
             igs/MessagingCore/*
       
+      - name: Check if app should be deployed
+        run: |
+          echo "DEPLOY=${{ steps.diff.outputs.any_changed == 'true' || github.event.inputs.app == matrix.app }}" >> $GITHUB_ENV
+
       - name: changes?
         run: |
           echo ${{ steps.diff.outputs.any_changed }}
           echo ${{ steps.diff.outputs.all_changed_and_modified_files }}
 
-      - if: ${{ steps.diff.outputs.any_changed }}
+      - if: ${{ env.DEPLOY == 'true' }}
         run: echo "Hello world!"
 
-      - if: ${{ !steps.diff.outputs.any_changed }}
+      - if: ${{ env.DEPLOY == 'false' }}
         run: echo "Negative Hello world!"        
