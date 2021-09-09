@@ -7,15 +7,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  publish:
+  create-release:
     strategy:
       fail-fast: false
       matrix:
         ig:
           - MessagingCore
+    env:
+      IMAGE: ghcr.io/navikt/hops-api:e564a55271271bf3aecadf263ba61d6a00014f7e
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      - name: ❔ Check if image exists
+      - id: check_image
+      - run: |
+          if [[ $(docker manifest inspect ${{ env.IMAGE }}) ]] then;
+            echo "::set-output name=exists::true"
+          else
+            echo "::set-output name=exists::false"
+          fi
+
+      - name: print
+      - if: ${{ steps.check_image.outputs.exists == 'true'}}
+      - run: |
+          echo "Image exists!"
+
+      - name: print
+      - if: ${{ steps.check_image.outputs.exists == 'false'}}
+      - run: |
+          echo "Image does not exists!"          
 
       # Gets the IG's id and version from the sushi-config.yaml file, this is needed to create the unique package/release name.
       - name: 🆔 Get Id and Version
