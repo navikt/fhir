@@ -26,12 +26,13 @@ jobs:
           id: id
           version: version
 
-      - name: Create tag env.
+      # Creates the tag as a new environmnet variable with the format: {package-id}-{version}
+      - name: 🏷️ Determine Release tag
         run: |
           echo "TAG=${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}" >> $GITHUB_ENV
 
       # Checks if the Release already exists, if it does we do not want to overwrite it because a release should be immutable.
-      - name: ❔ Check if Release exists
+      - name: 🏷️ Check if Release tag already exists
         uses: mukunku/tag-exists-action@v1.0.0
         id: check_tag
         with: 
@@ -51,20 +52,18 @@ jobs:
 
       # Downloads the newest version of the IG Publisher, this could probable be cached.
       - name: 📥 Download IG Publisher
-        uses: docker://hl7fhir/ig-publisher-base:latest
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
-        with:
-          args: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o ./input-cache/publisher.jar --create-dirs
+        run: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o publisher.jar          
 
       # Builds the NPM Package for distribution.
       - name: 🏃‍♂️ Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ matrix.ig }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ matrix.ig }}
+          args: java -jar publisher.jar publisher -ig igs/${{ matrix.ig }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ matrix.ig }}
 
       # A commit-tag is needed when creating a release.
-      # This step will push a new tag on the current commit with the format: {package-id}-{version}, unless it already exists.
+      # This step will push a new tag on the current commit, unless it already exists.
       - name: 🏷️ Push Release Tag
         uses: actions-ecosystem/action-push-tag@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}

@@ -16,13 +16,14 @@ jobs:
       - uses: actions/checkout@v2
 
       # Downloads the newest version of the IG Publisher, this could probable be cached.
-      - run: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o input-cache/publisher.jar --create-dirs
+      - name: 📥 Download IG Publisher
+        run: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o publisher.jar
 
       # Builds the HTML page for the IG.
       - name: 🏃‍♂️ Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
-          args: java -jar input-cache/publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ github.workflow }}
+          args: java -jar publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ github.workflow }}
 
       # Publishes the HTML page to a seperate branch in order to host it using GitHub-Pages.
       # This will overwrite the currently published HTML page.
