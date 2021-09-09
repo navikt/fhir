@@ -2,7 +2,6 @@
     "files.exclude": {
         "package-cache": true,
         "**/input-cache/": true,
-        "**/output/": true,
         "**/temp/": true,
         "**/template/": true,
         "**/*.jar": true

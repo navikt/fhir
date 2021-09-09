@@ -61,7 +61,7 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ matrix.ig }}/ig.ini
+          args: java -jar ./input-cache/publisher.jar publisher -ig igs/${{ matrix.ig }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ matrix.ig }}
 
       # A commit-tag is needed when creating a release.
       # This step will push a new tag on the current commit with the format: {package-id}-{version}, unless it already exists.
