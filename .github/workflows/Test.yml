@@ -9,6 +9,9 @@ on:
 
 jobs:
   setup:
+    env:
+      # Used by nais/deploy/actions/deploy, even though the documentation doesn't specify it.
+      APP: "hops-api"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -24,7 +27,7 @@ jobs:
       
       - name: Check if app should be deployed
         run: |
-          echo "DEPLOY=${{ steps.diff.outputs.any_changed == 'true' || github.event.inputs.app == matrix.app }}" >> $GITHUB_ENV
+          echo "DEPLOY=${{ steps.diff.outputs.any_changed == 'true' || github.event.inputs.app == env.APP }}" >> $GITHUB_ENV
 
       - name: changes?
         run: |
