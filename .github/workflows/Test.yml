@@ -5,8 +5,13 @@ on:
 
 jobs:
   test:
+    strategy:
+      fail-fast: false
+      matrix:
+        app:
+          - hops-api
     env:
-      IMAGE: ghcr.io/navikt/hops-api:e564a55271271bf3aecadfc63ba61d6a00014f7e
+      IMAGE: ghcr.io/navikt/${{ matrix.app }}:e564a55271271bf3aecadf263ba61d6a00014f7e
     runs-on: ubuntu-latest
     steps:
       - name: ❔ Check if image exists
