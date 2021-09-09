@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-          
+        with:
+          fetch-depth: 2
+
       - name: Check if changes are relevant
         id: diff
         uses: tj-actions/changed-files@v1.1.2
