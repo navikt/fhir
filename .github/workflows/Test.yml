@@ -5,6 +5,7 @@ on:
 
 jobs:
   setup:
+    runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.diff.outputs.apps }}
     steps:
