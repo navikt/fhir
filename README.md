@@ -32,7 +32,7 @@ Et FSH prosjekt følger en [bestemt struktur](https://fshschool.org/docs/sushi/p
 Generering og deployment av IGene gjøres vha. github-actions som kjører IG Publisher og commiter artefaktene (html, css, js, assets) til en egen **gh-pages branch** som hostes med github-pages. Dette kan alternativt bli gjort av HL7 sin [Auto-IG-builder](https://github.com/FHIR/auto-ig-builder), men da mister vi litt fleksibilitet, vi må f.eks bruke domenet `https://build.fhir.org/ig`.
 
 # Development
-For å bygge IGer lokadlt trenger du SUSHI, IG-Publisher og alle avhengighetene. Dette kan du installere ved å følge de respektive installasjonsveiledningene, alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
+For å bygge IGer lokalt trenger du SUSHI, IG-Publisher og alle avhengighetene. Dette kan du installere ved å følge de respektive installasjonsveiledningene, alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
 
 ## 👨‍💻 Visual Studio Code
 For utvikling av IGer er det greit å bruke [vscode](https://code.visualstudio.com/).
