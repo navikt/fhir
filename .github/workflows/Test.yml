@@ -4,12 +4,18 @@ on:
   workflow_dispatch:
 
 jobs:
+  setup:
+    outputs:
+      matrix: ${{ steps.diff.outputs.apps }}
+    steps:
+      - id: diff
+      - run: echo "::set-output name=apps::[hops-api, hops-eventstore]"
   test:
+    needs: setup
     strategy:
       fail-fast: false
       matrix:
-        app:
-          - hops-api
+        app: ${{ needs.setup.outputs.apps }}
     env:
       IMAGE: ghcr.io/navikt/${{ matrix.app }}:e564a55271271bf3aecadf263ba61d6a00014f7e
     runs-on: ubuntu-latest
@@ -24,11 +30,11 @@ jobs:
           fi
 
       - name: print
-        if: ${{ steps.check_image.outputs.exists == 'true'}}
+        if: ${{ steps.check_image.outputs.exists }}
         run: |
           echo "Image exists!"
 
       - name: print
-        if: ${{ steps.check_image.outputs.exists == 'false'}}
+        if: ${{ steps.check_image.outputs.exists }}
         run: |
           echo "Image does not exists!"
