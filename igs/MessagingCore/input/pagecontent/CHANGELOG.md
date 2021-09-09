@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-- Nam at dui sed lidgula commodo mattis.
+- Nam at dui sed ligula commodo mattis.
 - Nulla cursus augue non egestas consectetur.
 
 ### Changed
