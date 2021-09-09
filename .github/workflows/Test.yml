@@ -7,7 +7,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     outputs:
-      matrix: ${{ steps.diff.outputs.apps }}
+      apps: ${{ steps.diff.outputs.apps }}
     steps:
       - id: diff
         run: echo "::set-output name=apps::[hops-api, hops-eventstore]"
