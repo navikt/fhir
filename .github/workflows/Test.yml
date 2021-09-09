@@ -1,6 +1,10 @@
 name: Test
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'igs/**'
   workflow_dispatch:
     inputs:
       app:
@@ -27,7 +31,8 @@ jobs:
       
       - name: Check if app should be deployed
         run: |
-          echo "DEPLOY=${{ steps.diff.outputs.any_changed == 'true' || github.event.inputs.app == env.APP }}" >> $GITHUB_ENV
+          echo "DEPLOY=${{ (steps.diff.outputs.any_changed == 'true' && github.event_name == 'push')
+          || github.event.inputs.app == env.APP }}" >> $GITHUB_ENV
 
       - name: changes?
         run: |
