@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nulla cursus augue non egestas consectetur.
 
 ### Changed
-- Suspendisse placerat diam a mattis mattis.
+- Suspendisse placderat diam a mattis mattis.
 
 ### Fixed
 - Cras nec enim tincidunt lorem sagittis vehicula ac et leo.
