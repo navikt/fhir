@@ -28,8 +28,7 @@ jobs:
 
       # Creates the tag as a new environmnet variable with the format: {package-id}-{version}
       - name: 🏷️ Determine Release tag
-        run: |
-          echo "TAG=${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}" >> $GITHUB_ENV
+        run: echo "TAG=${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}" >> $GITHUB_ENV
 
       # Checks if the Release already exists, if it does we do not want to overwrite it because a release should be immutable.
       - name: 🏷️ Check if Release tag already exists
@@ -80,4 +79,5 @@ jobs:
           tag_name: ${{ env.TAG }}
           body: ${{ steps.changelog.outputs.changes }}
           files: |
+            igs/${{ matrix.ig }}/output/full-ig.zip
             igs/${{ matrix.ig }}/output/package.tgz

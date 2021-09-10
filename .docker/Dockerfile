@@ -1,4 +1,4 @@
-# Used as a build container for FHIR Implementation Guides.
+# Used to build IGs locally without having to manually install all the required dependencies.
 # References:
 # - https://github.com/NIH-NCPI/hl7-fhir-ig-publisher
 # - https://github.com/FHIR/auto-ig-builder

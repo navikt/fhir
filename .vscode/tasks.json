@@ -6,7 +6,7 @@
     {
       "label": "Build docker-image",
       "type": "shell",
-      "command": "docker build -t navikt/fhir-ig-dev ${workspaceFolder}",
+      "command": "docker build -t navikt/fhir-ig-dev ${workspaceFolder}/.docker",
       "presentation": {
         "clear": true
       },
