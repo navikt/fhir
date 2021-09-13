@@ -1,18 +1,16 @@
-name: Release
+name: MessagingCore-release
 
 on:
   push:
     branches: [main]
-    paths: [igs/*/sushi-config.yaml]
+    paths: [igs/MessagingCore/sushi-config.yaml]
   workflow_dispatch:
 
+env:
+  IG: MessagingCore
+
 jobs:
-  create-release:
-    strategy:
-      fail-fast: false
-      matrix:
-        ig:
-          - MessagingCore
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,20 +20,21 @@ jobs:
         uses: CumulusDS/get-yaml-paths-action@v0.1.1
         id: sushi_config
         with:
-          file: igs/${{ matrix.ig }}/sushi-config.yaml
+          file: igs/${{ env.IG }}/sushi-config.yaml
           id: id
           version: version
 
-      # Creates the tag as a new environmnet variable with the format: {package-id}-{version}
+      # Creates the tag with the format: {package-id}-{version}
       - name: 🏷️ Determine Release tag
-        run: echo "TAG=${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}" >> $GITHUB_ENV
+        id: create_tag
+        run: echo "::set-output name=tag::${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}"
 
       # Checks if the Release already exists, if it does we do not want to overwrite it because a release should be immutable.
       - name: 🏷️ Check if Release tag already exists
         uses: mukunku/tag-exists-action@v1.0.0
         id: check_tag
         with: 
-          tag: ${{ env.TAG }}
+          tag: ${{ steps.create_tag.ouputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -46,7 +45,7 @@ jobs:
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         id: changelog
         with:
-          path: igs/${{ matrix.ig }}/input/pagecontent/CHANGELOG.md
+          path: igs/${{ env.IG }}/input/pagecontent/CHANGELOG.md
           version: ${{ steps.sushi_config.outputs.version }}
 
       # Downloads the newest version of the IG Publisher, this could probable be cached.
@@ -59,7 +58,7 @@ jobs:
         uses: docker://hl7fhir/ig-publisher-base:latest
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          args: java -jar publisher.jar publisher -ig igs/${{ matrix.ig }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ matrix.ig }}
+          args: java -jar publisher.jar publisher -ig igs/${{ env.IG }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ env.IG }}
 
       # A commit-tag is needed when creating a release.
       # This step will push a new tag on the current commit, unless it already exists.
@@ -67,7 +66,7 @@ jobs:
         uses: actions-ecosystem/action-push-tag@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          tag: ${{ env.TAG }}
+          tag: ${{ steps.create_tag.ouputs.tag }}
 
       # Creates a new GitHub Release with a NPM Package containing the FHIR Profiles, unless it already exists.
       # This package is ready to be published to the FHIR Package Registry.
@@ -75,9 +74,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          name: ${{ matrix.ig }} v${{ steps.sushi_config.outputs.version }}
-          tag_name: ${{ env.TAG }}
+          name: ${{ env.IG }} v${{ steps.sushi_config.outputs.version }}
+          tag_name: ${{ steps.create_tag.ouputs.tag }}
           body: ${{ steps.changelog.outputs.changes }}
           files: |
-            igs/${{ matrix.ig }}/output/full-ig.zip
-            igs/${{ matrix.ig }}/output/package.tgz
+            igs/${{ env.IG }}/output/full-ig.zip
+            igs/${{ env.IG }}/output/package.tgz

@@ -1,11 +1,14 @@
 # Name must match the IG's directory name.
-name: MessagingCore
+name: MessagingCore-ghpages
 
 on:
   push:
     branches: [main]
     paths: [igs/MessagingCore/**]
   workflow_dispatch:
+
+env:
+  IG: MessagingCore
 
 # The following jobs are equal for all IGs and can be moved to a common composite-action if 'uses'-support is added, see:
 # https://github.com/actions/runner/blob/main/docs/adrs/1144-composite-actions.md
@@ -23,7 +26,7 @@ jobs:
       - name: 🏃‍♂️ Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
         with:
-          args: java -jar publisher.jar publisher -ig igs/${{ github.workflow }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ github.workflow }}
+          args: java -jar publisher.jar publisher -ig igs/${{ env.IG }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ env.IG }}
 
       # Publishes the HTML page to a seperate branch in order to host it using GitHub-Pages.
       # This will overwrite the currently published HTML page.
@@ -31,7 +34,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./igs/${{ github.workflow }}/output
-          destination_dir: ./igs/${{ github.workflow }}
+          publish_dir: ./igs/${{ env.IG }}/output
+          destination_dir: ./igs/${{ env.IG }}
           exclude_assets: '**.zip,**.tgz,**.pack'
-          commit_message: '${{ github.workflow }}: ${{ github.event.head_commit.message }}'
+          commit_message: '${{ env.IG }}: ${{ github.event.head_commit.message }}'
