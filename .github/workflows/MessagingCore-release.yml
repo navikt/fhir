@@ -24,17 +24,16 @@ jobs:
           id: id
           version: version
 
-      # Creates the tag with the format: {package-id}-{version}
+      # Creates the tag as a new environmnet variable with the format: {package-id}-{version}
       - name: 🏷️ Determine Release tag
-        id: create_tag
-        run: echo "::set-output name=tag::${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}"
+        run: echo "TAG=${{ steps.sushi_config.outputs.id }}-${{ steps.sushi_config.outputs.version }}" >> $GITHUB_ENV
 
       # Checks if the Release already exists, if it does we do not want to overwrite it because a release should be immutable.
       - name: 🏷️ Check if Release tag already exists
         uses: mukunku/tag-exists-action@v1.0.0
         id: check_tag
         with: 
-          tag: ${{ steps.create_tag.ouputs.tag }}
+          tag: ${{ env.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -66,7 +65,7 @@ jobs:
         uses: actions-ecosystem/action-push-tag@v1
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
-          tag: ${{ steps.create_tag.ouputs.tag }}
+          tag: ${{ env.TAG }}
 
       # Creates a new GitHub Release with a NPM Package containing the FHIR Profiles, unless it already exists.
       # This package is ready to be published to the FHIR Package Registry.
@@ -75,7 +74,7 @@ jobs:
         if: ${{ steps.check_tag.outputs.exists == 'false'}}
         with:
           name: ${{ env.IG }} v${{ steps.sushi_config.outputs.version }}
-          tag_name: ${{ steps.create_tag.ouputs.tag }}
+          tag_name: ${{ env.TAG }}
           body: ${{ steps.changelog.outputs.changes }}
           files: |
             igs/${{ env.IG }}/output/full-ig.zip
