@@ -38,7 +38,7 @@
     {
       "label": "IG Publisher",
       "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/ig-template:/ig-template:ro -v ${fileDirname}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini",
       "dependsOn": [
         "Build docker-image"
       ],

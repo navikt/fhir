@@ -4,7 +4,9 @@ name: MessagingCore-ghpages
 on:
   push:
     branches: [main]
-    paths: [igs/MessagingCore/**]
+    paths:
+      - ig-template/**
+      - igs/MessagingCore/**
   workflow_dispatch:
 
 env:
