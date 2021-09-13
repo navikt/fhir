@@ -1,1 +1,1 @@
-See [Guidance for FHIR IG Creation](https://build.fhir.org/ig/FHIR/ig-guidance/index.html) on how to create custom templates.
+See [Guidance for FHIR IG Creation](https://build.fhir.org/ig/FHIR/ig-guidance/index.html) on how to create and extend custom templates.
