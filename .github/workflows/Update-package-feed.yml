@@ -19,7 +19,8 @@ jobs:
           echo '{"releases":' > input.json
           wget -q -O - https://api.github.com/repos/navikt/fhir/releases >> input.json
           echo '}' >> input.json
-          cat package-feed.liquid | npx liquidjs input.json > package-feed.xml
+          mkdir output
+          cat package-feed.liquid | npx liquidjs input.json > output/package-feed.xml
 
       # Publishes the package-feed.xml to a seperate branch in order to host it using GitHub-Pages.
       # This will overwrite the currently published package-feed.xml.
@@ -27,6 +28,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          exclude_assets: '**, !package-feed.xml'
-          keep_files: true
+          publish_dir: output
           commit_message: 'Updated package-feed.xml'
+          keep_files: true
