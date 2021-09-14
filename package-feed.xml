@@ -1,0 +1,23 @@
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:fhir="http://hl7.org/fhir/feed" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+	<channel>
+    <title>NAV FHIR Packages</title>
+    <description>New Packages published by NAV</description>
+    <link>https://navikt.github.io/fhir/package-feed.xml</link>
+    <generator>HL7, Inc FHIR Publication tooling</generator>
+    <lastBuildDate>Tue, 14 Sep 2021 10:08:38 GMT</lastBuildDate>
+    <atom:link href="https://navikt.github.io/fhir/package-feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 14 Sep 2021 10:08:38 GMT</pubDate>
+    <language>en</language>
+    <ttl>600</ttl>
+    <item>
+      <title>nav.no.messaging.core.r4#0.1.0</title>
+      <description/>
+      <link>https://github.com/navikt/fhir/releases/download/nav.no.messaging.core.r4-0.1.0/package.tgz</link>
+      <guid isPermaLink="true">https://github.com/navikt/fhir/releases/download/nav.no.messaging.core.r4-0.1.0/package.tgz</guid>
+      <dc:creator>NAV</dc:creator>
+      <fhir:version>4.0.1</fhir:version>
+      <fhir:kind>fhir.ig</fhir:kind>
+      <pubDate>Tue, 14 Sep 2021 09:25:15 GMT</pubDate>
+    </item>    
+  </channel>
+</rss>
