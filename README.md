@@ -10,6 +10,8 @@ SUSHI vil også benytte **sushi-config.yaml** [for å generere](http://build.fhi
 
 NAV har valgt å bruke FSH istedenfor [Forge](https://fire.ly/products/forge/); et GUI verktøy som generer FHIR ressurser, siden det gir bedre kildekodekontroll og lettere lar seg integerere i CI\CD-pipelines. Forge krever også lisens og fungerer bare på Windows.
 
+For å eksperimentere med FSH kan web verktøyet [FSH Online](https://fshschool.org/FSHOnline/#/) anbefales.
+
 ## 📙 Bruk av begreper
 I FHIR verden brukes ofte begrepene implementasjonsguide, pakke, profiler og kontrakter\datamodeller om hverandre. Dette kan være forvirrende og vi skal prøve å oppklare:
 
