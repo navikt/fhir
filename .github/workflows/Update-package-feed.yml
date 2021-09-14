@@ -1,4 +1,4 @@
-name: Update package feed
+name: Update package-feed.xml
 
 on:
   release:
@@ -16,9 +16,12 @@ jobs:
       - name: 📃 Create package feed
         run: |
           npm install liquidjs
-          cat package-feed.liquid | npx liquidjs '{"releases":$(wget -q -O - https://api.github.com/repos/navikt/fhir/releases)}' > package-feed.xml
+          echo '{"releases":' > input.json
+          wget -q -O - https://api.github.com/repos/navikt/fhir/releases >> input.json
+          echo '}' >> input.json
+          cat package-feed.liquid | npx liquidjs input.json > package-feed.xml
 
-      # Publishes the generated package-feed.xml to a seperate branch in order to host it using GitHub-Pages.
+      # Publishes the package-feed.xml to a seperate branch in order to host it using GitHub-Pages.
       # This will overwrite the currently published package-feed.xml.
       - name: 🚀 Deploy to GitHub-Pages
         uses: peaceiris/actions-gh-pages@v3
