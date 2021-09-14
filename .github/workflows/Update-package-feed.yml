@@ -28,4 +28,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           exclude_assets: '**, !package-feed.xml'
+          keep_files: true
           commit_message: 'Updated package-feed.xml'
