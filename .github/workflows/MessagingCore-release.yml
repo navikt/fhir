@@ -23,6 +23,7 @@ jobs:
           file: igs/${{ env.IG }}/sushi-config.yaml
           id: id
           version: version
+          releaseLabel: releaseLabel
 
       # Creates the tag as a new environmnet variable with the format: {package-id}-{version}
       - name: 🏷️ Determine Release tag
@@ -41,7 +42,7 @@ jobs:
       # Will fail the workflow if an entry is missing, this is intentional behavior.
       - name: 📄 Get Changelog Entry
         uses: mindsers/changelog-reader-action@v2
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists == 'false' && steps.sushi_config.outputs.releaseLabel == 'release' }}
         id: changelog
         with:
           path: igs/${{ env.IG }}/input/pagecontent/CHANGELOG.md
@@ -49,13 +50,13 @@ jobs:
 
       # Downloads the newest version of the IG Publisher, this could probable be cached.
       - name: 📥 Download IG Publisher
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists == 'false' && steps.sushi_config.outputs.releaseLabel == 'release' }}
         run: curl -L https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar -o publisher.jar          
 
       # Builds the NPM Package for distribution.
       - name: 🏃‍♂️ Run IG Publisher
         uses: docker://hl7fhir/ig-publisher-base:latest
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists == 'false' && steps.sushi_config.outputs.releaseLabel == 'release' }}
         with:
           args: java -jar publisher.jar publisher -ig igs/${{ env.IG }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ env.IG }}
 
@@ -63,7 +64,7 @@ jobs:
       # This step will push a new tag on the current commit, unless it already exists.
       - name: 🏷️ Push Release Tag
         uses: actions-ecosystem/action-push-tag@v1
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists == 'false' && steps.sushi_config.outputs.releaseLabel == 'release' }}
         with:
           tag: ${{ env.TAG }}
 
@@ -71,12 +72,11 @@ jobs:
       # This package is ready to be published to the FHIR Package Registry.
       - name: 📦 Create Release
         uses: softprops/action-gh-release@v1
-        if: ${{ steps.check_tag.outputs.exists == 'false'}}
+        if: ${{ steps.check_tag.outputs.exists == 'false' && steps.sushi_config.outputs.releaseLabel == 'release' }}
         with:
           name: ${{ env.IG }} v${{ steps.sushi_config.outputs.version }}
           tag_name: ${{ env.TAG }}
           body: ${{ steps.changelog.outputs.changes }}
-          draft: true
           fail_on_unmatched_files: true
           files: |
             igs/${{ env.IG }}/output/full-ig.zip
