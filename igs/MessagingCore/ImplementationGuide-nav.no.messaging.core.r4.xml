@@ -3,13 +3,16 @@
 <ImplementationGuide xmlns="http://hl7.org/fhir">
   <id value="nav.no.messaging.core.r4"/>
   <text>
-    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4</pre></div>
+    <status value="extensions"/><div xmlns="http://www.w3.org/1999/xhtml"><h2>MessagingCore</h2><p>The official URL for this implementation guide is: </p><pre>http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4</pre><div><p>An IG containing the base messaging profiles.</p>
+</div></div>
   </text>
   <url value="http://fhir.nav.no/ImplementationGuide/nav.no.messaging.core.r4"/>
   <version value="0.1.0"/>
   <name value="MessagingCore"/>
   <status value="draft"/>
-  <date value="2021-09-13T13:38:58+00:00"/>
+  <date value="2021-09-14T09:23:27+00:00"/>
+  <publisher value="Norwegian Labour and Welfare Administration (NAV)"/>
+  <description value="An IG containing the base messaging profiles."/>
   <packageId value="nav.no.messaging.core.r4"/>
   <license value="CC0-1.0"/>
   <fhirVersion value="4.0.1"/>
