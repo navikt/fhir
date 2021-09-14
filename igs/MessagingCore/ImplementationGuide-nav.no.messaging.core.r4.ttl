@@ -16,8 +16,17 @@
   fhir:ImplementationGuide.version [ fhir:value "0.1.0"];
   fhir:ImplementationGuide.name [ fhir:value "MessagingCore"];
   fhir:ImplementationGuide.status [ fhir:value "draft"];
-  fhir:ImplementationGuide.date [ fhir:value "2021-09-14T09:23:27+00:00"^^xsd:dateTime];
+  fhir:ImplementationGuide.date [ fhir:value "2021-09-14T10:14:05+00:00"^^xsd:dateTime];
   fhir:ImplementationGuide.publisher [ fhir:value "Norwegian Labour and Welfare Administration (NAV)"];
+  fhir:ImplementationGuide.contact [
+     fhir:index 0;
+     fhir:ContactDetail.name [ fhir:value "Norwegian Labour and Welfare Administration (NAV)" ];
+     fhir:ContactDetail.telecom [
+       fhir:index 0;
+       fhir:ContactPoint.system [ fhir:value "url" ];
+       fhir:ContactPoint.value [ fhir:value "https://github.com/navikt/fhir" ]
+     ]
+  ];
   fhir:ImplementationGuide.description [ fhir:value "An IG containing the base messaging profiles."];
   fhir:ImplementationGuide.packageId [ fhir:value "nav.no.messaging.core.r4"];
   fhir:ImplementationGuide.license [ fhir:value "CC0-1.0"];

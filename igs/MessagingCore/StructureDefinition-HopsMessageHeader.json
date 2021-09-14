@@ -19,8 +19,19 @@
   "version": "0.1.0",
   "name": "HopsMessageHeader",
   "status": "active",
-  "date": "2021-09-14T09:23:27+00:00",
+  "date": "2021-09-14T10:14:05+00:00",
   "publisher": "Norwegian Labour and Welfare Administration (NAV)",
+  "contact": [
+    {
+      "name": "Norwegian Labour and Welfare Administration (NAV)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://github.com/navikt/fhir"
+        }
+      ]
+    }
+  ],
   "fhirVersion": "4.0.1",
   "mapping": [
     {

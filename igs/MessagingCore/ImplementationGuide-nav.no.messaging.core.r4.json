@@ -9,8 +9,19 @@
   "version": "0.1.0",
   "name": "MessagingCore",
   "status": "draft",
-  "date": "2021-09-14T09:23:27+00:00",
+  "date": "2021-09-14T10:14:05+00:00",
   "publisher": "Norwegian Labour and Welfare Administration (NAV)",
+  "contact": [
+    {
+      "name": "Norwegian Labour and Welfare Administration (NAV)",
+      "telecom": [
+        {
+          "system": "url",
+          "value": "https://github.com/navikt/fhir"
+        }
+      ]
+    }
+  ],
   "description": "An IG containing the base messaging profiles.",
   "packageId": "nav.no.messaging.core.r4",
   "license": "CC0-1.0",

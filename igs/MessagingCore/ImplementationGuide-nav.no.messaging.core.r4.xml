@@ -10,8 +10,15 @@
   <version value="0.1.0"/>
   <name value="MessagingCore"/>
   <status value="draft"/>
-  <date value="2021-09-14T09:23:27+00:00"/>
+  <date value="2021-09-14T10:14:05+00:00"/>
   <publisher value="Norwegian Labour and Welfare Administration (NAV)"/>
+  <contact>
+    <name value="Norwegian Labour and Welfare Administration (NAV)"/>
+    <telecom>
+      <system value="url"/>
+      <value value="https://github.com/navikt/fhir"/>
+    </telecom>
+  </contact>
   <description value="An IG containing the base messaging profiles."/>
   <packageId value="nav.no.messaging.core.r4"/>
   <license value="CC0-1.0"/>

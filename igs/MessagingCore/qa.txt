@@ -3,9 +3,9 @@
 
 err = 0, warn = 4, info = 0
 IG Publisher Version: 1.1.80
-Generated Tue Sep 14 09:23:38 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
+Generated Tue Sep 14 10:14:20 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
 
- Build Errors : 20 / 2 / 0
+ Build Errors : 0 / 2 / 0
  /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4 : 0 / 0 / 1
  /github/workspace/igs/MessagingCore/fsh-generated/resources/StructureDefinition-HopsMessage : 0 / 1 / 1
  /github/workspace/igs/MessagingCore/fsh-generated/resources/StructureDefinition-HopsMessageHeader : 0 / 1 / 1
@@ -13,26 +13,6 @@ Generated Tue Sep 14 09:23:38 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.
 == n/a ==
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/HopsMessage.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
 WARNING: Unable to find ImplementationGuide.definition.resource.description for the resource StructureDefinition/HopsMessageHeader.  Descriptions are strongly encouraged if they cannot be inferred from the resource to allow proper population of the artifact list.
-ERROR: /github/workspace/igs/MessagingCore/output/CHANGELOG.html#/html/body/div/div/div/div/p/a at Line 196, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage-definitions.html#/html/body/div/div/div/div/p/a at Line 1027, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage-examples.html#/html/body/div/div/div/div/p/a at Line 237, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage-mappings.html#/html/body/div/div/div/div/p/a at Line 278, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage.html#/html/body/div/div/div/div/p/a at Line 855, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage.profile.history.html#/html/body/div/div/div/div/p/a at Line 226, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage.profile.json.html#/html/body/div/div/div/div/p/a at Line 3852, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage.profile.ttl.html#/html/body/div/div/div/div/p/a at Line 3440, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessage.profile.xml.html#/html/body/div/div/div/div/p/a at Line 3524, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-definitions.html#/html/body/div/div/div/div/p/a at Line 905, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-examples.html#/html/body/div/div/div/div/p/a at Line 237, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader-mappings.html#/html/body/div/div/div/div/p/a at Line 282, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.html#/html/body/div/div/div/div/p/a at Line 740, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.history.html#/html/body/div/div/div/div/p/a at Line 226, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.json.html#/html/body/div/div/div/div/p/a at Line 3718, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.ttl.html#/html/body/div/div/div/div/p/a at Line 3231, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/StructureDefinition-HopsMessageHeader.profile.xml.html#/html/body/div/div/div/div/p/a at Line 3365, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/artifacts.html#/html/body/div/div/div/div/p/a at Line 181, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/index.html#/html/body/div/div/div/div/p/a at Line 159, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
-ERROR: /github/workspace/igs/MessagingCore/output/toc.html#/html/body/div/div/div/div/p/a at Line 141, column 28: The link '' for "Norwegian Labour and Welfare Administration (NAV)" cannot be resolved
 == fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4.json ==
 == fsh-generated/resources/StructureDefinition-HopsMessage.json ==
 WARNING: StructureDefinition.where(url = 'http://fhir.nav.no/StructureDefinition/HopsMessage'): The Implementation Guide contains no examples for this profile
