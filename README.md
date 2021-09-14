@@ -19,7 +19,7 @@ I FHIR verden brukes ofte begrepene implementasjonsguide, pakke, profiler og kon
     * En HTML side for human-readable dokumentasjon.
     * Generell metadata implementert som en egen FHIR ressurs som også heter [ImplementationGuide](https://www.hl7.org/fhir/implementationguide.html).
     * Eksempler på FHIR ressurser som er ihht. profilene.
-* En [FHIR NPM Package](https://registry.fhir.org/learn) er IGen pakket som en NPM pakke. Avengigheter til andre IGer er gjenngitt som versionerte dependencies i package.json. En slik pakke kan brukes til validering og testing av FHIR ressurser.
+* En [FHIR NPM Package](https://registry.fhir.org/learn) er IGen uten dokumentasjon pakket som en NPM pakke. Avengigheter til andre IGer er gjenngitt som versionerte dependencies i package.json. En slik pakke kan brukes til validering og testing av FHIR ressurser.
 
 Mao. er det en 1:1:1 mapping mellom FSH-project, IG og FHIR Package.
 
