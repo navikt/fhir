@@ -39,7 +39,7 @@ Gitt at følgende kriterier for en IG gjelder:
 - ReleaseLabel i sushi-config.yaml er satt til **release**.
 - Versionen er dokumentert i `{ig}/input/pagecontent/CHANGELOG.md`.
 
-Når nevnte kriterier er oppfyllt vil en ny repository release lages og [package-feed.xml](https://navikt.github.io/fhir/package-feed.xml) automatisk oppdateres. Hvis feeden er registrert i HL7 sin [package-feeds.json](https://github.com/FHIR/ig-registry) vil pakken automatisk publiseres i FHIR Package Registry. Husk at publiserte pakke versioner er immutable og kan ikke slettes.
+Når nevnte kriterier er oppfyllt vil en ny repository release lages og [package-feed.xml](https://navikt.github.io/fhir/package-feed.xml) oppdateres. Hvis feeden er registrert i HL7 sin [package-feeds.json](https://github.com/FHIR/ig-registry) vil pakken automatisk publiseres til FHIR Package Registry. Husk at publiserte pakke versioner er immutable og kan ikke slettes.
 
 # Development
 For å bygge IGer lokalt trenger du SUSHI, IG-Publisher og alle avhengighetene. Dette kan du installere ved å følge de respektive installasjonsveiledningene, alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
