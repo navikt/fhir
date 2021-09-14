@@ -5,11 +5,15 @@
 id: nav.no.messaging.core.r4
 canonical: http://fhir.nav.no
 name: MessagingCore
+description: An IG containing the base messaging profiles.
+homepage: https://github.com/navikt/fhir
 status: draft
 version: 0.1.0
 fhirVersion: 4.0.1
 copyrightYear: 2021+
 releaseLabel: ci-build
+publisher:
+  name: Norwegian Labour and Welfare Administration (NAV)
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │

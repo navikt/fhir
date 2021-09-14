@@ -76,6 +76,8 @@ jobs:
           name: ${{ env.IG }} v${{ steps.sushi_config.outputs.version }}
           tag_name: ${{ env.TAG }}
           body: ${{ steps.changelog.outputs.changes }}
+          draft: true
+          fail_on_unmatched_files: true
           files: |
             igs/${{ env.IG }}/output/full-ig.zip
             igs/${{ env.IG }}/output/package.tgz

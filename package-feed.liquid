@@ -1,0 +1,33 @@
+{%- comment -%}
+  A Liquid Template used to transform json at https://api.github.com/repos/navikt/fhir/releases
+  into a FHIR Package RRS feed according to template http://hl7.org/fhir/package-feed.xml.
+  This is required to publish packages to the FHIR Package Registry: https://registry.fhir.org/submit
+  Bash command:
+  cat package-feed.liquid | npx liquidjs '{"releases":$(wget -q -O - https://api.github.com/repos/navikt/fhir/releases)}' > package-feed.xml
+{%- endcomment -%}
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:fhir="http://hl7.org/fhir/feed" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+	<channel>
+    <title>NAV FHIR Packages</title>
+    <description>New Packages published by NAV</description>
+    <link>https://navikt.github.io/fhir/package-feed.xml</link>
+    <generator>HL7, Inc FHIR Publication tooling</generator>
+    <lastBuildDate>{{ "now" | date: "%a, %d %b %Y %H:%M:%S GMT" }}</lastBuildDate>
+    <atom:link href="https://navikt.github.io/fhir/package-feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>{{ "now" | date: "%a, %d %b %Y %H:%M:%S GMT" }}</pubDate>
+    <language>en</language>
+    <ttl>600</ttl>
+    {%- for release in releases -%}
+    {%- assign package = release.assets | where: "name", "package.tgz" | first %}
+    <item>
+      <title>{{ release.tag_name | replace: "-", "#" }}</title>
+      <description/>
+      <link>{{ package.browser_download_url }}</link>
+      <guid isPermaLink="true">{{ package.browser_download_url }}</guid>
+      <dc:creator>NAV</dc:creator>
+      <fhir:version>4.0.1</fhir:version>
+      <fhir:kind>fhir.ig</fhir:kind>
+      <pubDate>{{ release.published_at | date: "%a, %d %b %Y %H:%M:%S GMT" }}</pubDate>
+    </item>    
+    {%- endfor %}    
+  </channel>
+</rss>
