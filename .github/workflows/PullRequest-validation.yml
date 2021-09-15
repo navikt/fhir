@@ -43,7 +43,7 @@ jobs:
           wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
           java -jar validator_cli.jar fsh-generated/resources -version 4.0 -ig fsh-generated/resources
 
-      - uses: ouzi-dev/commit-status-updater@v1.1.0
+      - uses: ouzi-dev/commit-status-updater@v1
         if: failure()
         with:
           status: "error"
