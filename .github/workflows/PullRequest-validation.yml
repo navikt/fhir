@@ -13,7 +13,7 @@ env:
   IG: MessagingCore
 
 jobs:
-  fhir_validation:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,14 +22,9 @@ jobs:
       - name: 🍣 Run SUSHI
         run: npm install -g fsh-sushi && sushi igs/${{ env.IG }}
 
-      # Uses Firely's action to run the official Java FHIR Validator because it gives a prettified output.
-      # Doc: https://github.com/FirelyTeam/firely-terminal-pipeline
+      # Downloads and runs the official FHIR Validator.
+      # Doc: https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator
       - name: 🔥 Run FHIR Validator
-        uses: FirelyTeam/firely-terminal-pipeline@v0.2.1
-        with:
-          SIMPLIFIER_USERNAME: N/A
-          SIMPLIFIER_PASSWORD: N/A
-          PATH_TO_CONFORMANCE_RESOURCES: igs/${{ env.IG }}/fsh-generated/resources
-          PATH_TO_EXAMPLES: igs/${{ env.IG }}/fsh-generated/resources
-          DOTNET_VALIDATION_ENABLED: false
-          JAVA_VALIDATION_ENABLED: true
+        run: |
+          wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
+          java -jar validator_cli.jar -version 4.0 -ig igs/${{ env.IG }}/fsh-generated/resources igs/${{ env.IG }}/fsh-generated/resources
