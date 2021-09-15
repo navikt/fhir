@@ -1,5 +1,5 @@
 # ╭──────────────────────────────────────ImplementationGuide───────────────────────────────────────╮
-# │  --The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: nav.no.messaging.core.r4
