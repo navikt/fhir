@@ -20,7 +20,7 @@ jobs:
 
       # This step can be omitted when firely-terminal-pipeline has added support for SUSHI.
       - name: 🍣 Run SUSHI
-        run: npm install fsh-sushi && sushi igs/${{ env.IG }}
+        run: npm install -g fsh-sushi && sushi igs/${{ env.IG }}
 
       # Uses Firely's action to run the official Java FHIR Validator because it gives a prettified output.
       # Doc: https://github.com/FirelyTeam/firely-terminal-pipeline
