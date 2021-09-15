@@ -15,6 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      # Persist the FHIR Package Cache between runners.
+      # Doc: https://confluence.hl7.org/display/FHIR/FHIR+Package+Cache
+      - name: 🗂️ Cache FHIR Packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.fhir/packages
+          key: fhir-packages
+
+      # Persist the IG Publisher input-cache between runners.
+      # Doc: https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#igroot-input-cache
+      - name: 🗂️ Cache IG Publisher input-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            igs/${{ env.IG }}/input-cache
+          key: ig-publisher-input-cache        
+
       # Gets the IG's id and version from the sushi-config.yaml file, this is needed to create the unique package/release name.
       - name: 🆔 Get Id and Version
         uses: CumulusDS/get-yaml-paths-action@v0.1.1
