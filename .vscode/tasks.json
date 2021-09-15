@@ -20,28 +20,19 @@
         "kind": "build",
         "isDefault": true
       },
-      "dependsOn": [
-        "Build docker-image"
-      ],
       "problemMatcher": []
     },
     {
       "label": "Validator",
       "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources -ig /data/fsh-generated/resources -version 4.0",
       "group": "test",
-      "dependsOn": [
-        "Build docker-image"
-      ],
       "problemMatcher": []
     },
     {
       "label": "IG Publisher",
       "type": "shell",
       "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/ig-template:/ig-template:ro -v ${fileDirname}:/data/ig navikt/fhir-ig-dev publisher -ig /data/ig/ig.ini",
-      "dependsOn": [
-        "Build docker-image"
-      ],
       "problemMatcher": []
     },
     {
