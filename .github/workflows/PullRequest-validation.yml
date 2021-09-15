@@ -32,12 +32,20 @@ jobs:
       - name: 🍣 Run SUSHI
         run: |
           npm install -g fsh-sushi
-          sushi igs/${{ env.IG }} --snapshot --out .
+          sushi igs/${{ env.IG }} --out .
 
       # Downloads and runs the official FHIR Validator.
       # Doc: https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator
+      # The ImplementationGuide resource is 
       - name: 🔥 Run FHIR Validator
         run: |
           rm fsh-generated/resources/ImplementationGuide-*
           wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
           java -jar validator_cli.jar fsh-generated/resources -version 4.0 -ig fsh-generated/resources
+
+      - uses: ouzi-dev/commit-status-updater@v1.1.0
+        if: failure()
+        with:
+          status: "error"
+          description: "Validation error(s)"
+          url: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
