@@ -48,4 +48,4 @@ jobs:
         with:
           status: "error"
           description: "Validation error(s)"
-          url: https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}
+          url: https://github.com/${{github.repository}}/runs/${{github.run_id}}
