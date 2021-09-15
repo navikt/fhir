@@ -22,7 +22,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: |
-            ~/.fhir/packages
+            ~/.fhir
           key: fhir-packages
 
       # Builds the .fsh files into FHIR .json resources.
