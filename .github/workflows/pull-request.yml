@@ -8,9 +8,6 @@ on:
       - igs/MessagingCore/**
   workflow_dispatch:
 
-env:
-  IG: MessagingCore
-
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -47,6 +44,8 @@ jobs:
 
   validate:
     runs-on: ubuntu-latest
+    env:
+      IG: MessagingCore
     steps:
       - uses: actions/checkout@v2
 
