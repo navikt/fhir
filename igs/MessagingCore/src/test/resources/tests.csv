@@ -1,0 +1,2 @@
+resource,profile
+valid/message-with-valid-her-id.json,http://fhir.nav.no/StructureDefinition/HopsMessage

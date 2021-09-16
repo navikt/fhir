@@ -1,11 +1,21 @@
 # SUSHI and IG Publisher
-**/fsh-generated
-**/input-cache
-**/output
-**/temp
-**/template
-**/_preprocessed
-**/_genonce*
-**/_updatePublisher*
+igs/*/fsh-generated
+igs/*/input-cache
+igs/*/output
+igs/*/temp
+igs/*/template
+igs/*/_preprocessed
+igs/*/_genonce*
+igs/*/_updatePublisher*
 **/*.jar
+
+# Gradle and IntelliJ
+.idea
+.gradle
+gradle
+gradlew
+gradlew.bat
+**/build
+
+# Liquid template engine output
 package-feed.xml

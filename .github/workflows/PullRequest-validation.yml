@@ -5,8 +5,7 @@ on:
     branches:
       - main
     paths:
-      - igs/*/sushi-config.yaml
-      - igs/*/fsh/input
+      - igs/**
   workflow_dispatch:
 
 env:

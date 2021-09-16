@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- Used to generate human readable messages. -->
+    <appender name="pretty" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%cyan(%d{HH:mm:ss.SSS}) %gray([%thread]) %highlight(%-5level) %magenta(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- logLevel and logAppender are configured as environment variables. -->
+    <root level="${LOG_LEVEL:-INFO}">
+        <appender-ref ref="${LOG_APPENDER:-pretty}"/>
+    </root>
+
+</configuration>

@@ -1,0 +1,2 @@
+resource,profile,expectedIssueSeverity,expectedLocation,expectedErrorMessage
+invalid/message-with-invalid-her-id.json,http://fhir.nav.no/StructureDefinition/HopsMessage,ERROR,Bundle.entry[0].resource.ofType(MessageHeader).destination[0].endpoint,valid-her-id
