@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - igs/**
+      - igs/MessagingCore/**
   workflow_dispatch:
 
 env:
