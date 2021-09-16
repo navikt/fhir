@@ -78,7 +78,7 @@ class ProfileTest {
         if (hasExpectedIssue) return
 
         val failureMessage = StringBuilder().run {
-            appendLine("Expected issue with level=$expectedIssueSeverity, location=$expectedLocation, message=$expectedErrorMessage")
+            appendLine("Expected issue with LEVEL: $expectedIssueSeverity | LOCATION: $expectedLocation | MESSAGE: $expectedErrorMessage")
 
             if (outcome.issue.isNotEmpty()) {
                 appendLine("The following issues were found:")
@@ -94,7 +94,7 @@ class ProfileTest {
 
 private fun createMessage(issue: OperationOutcome.OperationOutcomeIssueComponent): String {
     val location = issue.expression?.firstOrNull()?.asStringValue() ?: ""
-    return "${issue.severity.display}: type=${issue.code.display}, location=$location, message=${issue.details.text}"
+    return "SEVERITY: ${issue.severity.display} | TYPE: ${issue.code.display} | LOCATION: $location | MESSAGE: ${issue.details.text}"
 }
 
 private fun createValidator() =

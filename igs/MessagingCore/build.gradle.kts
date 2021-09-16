@@ -17,6 +17,9 @@ tasks {
     withType<Test> {
         dependsOn("sushi")
         useJUnitPlatform()
+        testLogging {
+            showStandardStreams = true
+        }
     }
 }
 
