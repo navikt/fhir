@@ -10,6 +10,7 @@ on:
 
 jobs:
   test:
+    name: ✔️ Validate test resources
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -43,6 +44,7 @@ jobs:
           rm -f ~/.gradle/caches/modules-2/gc.properties
 
   validate:
+    name: 🔥 Validate conformance resources
     runs-on: ubuntu-latest
     env:
       IG: MessagingCore
