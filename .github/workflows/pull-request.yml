@@ -1,4 +1,4 @@
-name: Pull-Request checks
+name: Pull-request checks
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ env:
   IG: MessagingCore
 
 jobs:
-  check:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,18 +27,9 @@ jobs:
           key: fhir-packages
 
       # SUSHI will be executed as a gradle-task followed by kotlin tests.
-      - name: 🏃‍♂️ Run tests
-        run: gradle test --continue
+      - name: 🏃‍♂ Run tests
+        run: gradle test --no-daemon --continue
         continue-on-error: true
-
-      # Downloads and runs the official FHIR Validator.
-      # Doc: https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator
-      # The ImplementationGuide resource is 
-      - name: 🔥 Run FHIR Validator
-        run: |
-          rm fsh-generated/resources/ImplementationGuide-*
-          wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
-          java -jar validator_cli.jar fsh-generated/resources -version 4.0 -ig fsh-generated/resources
 
       - name: Publish results (unit test)
         if: github.actor != 'dependabot[bot]' # requires write permission
@@ -52,4 +43,41 @@ jobs:
         # Restoring these files from a GitHub Actions cache might cause problems for future builds.
         run: |
           rm -f ~/.gradle/caches/modules-2/modules-2.lock
-          rm -f ~/.gradle/caches/modules-2/gc.properties          
+          rm -f ~/.gradle/caches/modules-2/gc.properties
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Persist the FHIR Package Cache between runners.
+      # Doc: https://confluence.hl7.org/display/FHIR/FHIR+Package+Cache
+      - name: 🗂️ Cache FHIR Packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.fhir/packages
+          key: fhir-packages
+
+      # Builds the .fsh files into FHIR .json resources.
+      # Doc: https://fshschool.org/docs/sushi/running
+      - name: 🍣 Run SUSHI
+        run: |
+          npm install -g fsh-sushi
+          sushi igs/${{ env.IG }} --out .
+
+      # Downloads and runs the official FHIR Validator.
+      # Doc: https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator
+      # The ImplementationGuide resource is
+      - name: 🔥 Run FHIR Validator
+        run: |
+          rm fsh-generated/resources/ImplementationGuide-*
+          wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
+          java -jar validator_cli.jar fsh-generated/resources -version 4.0 -ig fsh-generated/resources
+
+      - uses: ouzi-dev/commit-status-updater@v1
+        if: failure()
+        with:
+          status: "error"
+          description: "Validation error(s)"
+          url: https://github.com/${{github.repository}}/runs/${{github.run_id}}
