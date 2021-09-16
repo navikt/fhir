@@ -1,4 +1,4 @@
-name: Validation
+name: Pull-Request checks
 
 on:
   pull_request:
@@ -12,7 +12,7 @@ env:
   IG: MessagingCore
 
 jobs:
-  validate:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -26,12 +26,10 @@ jobs:
             ~/.fhir/packages
           key: fhir-packages
 
-      # Builds the .fsh files into FHIR .json resources.
-      # Doc: https://fshschool.org/docs/sushi/running
-      - name: 🍣 Run SUSHI
-        run: |
-          npm install -g fsh-sushi
-          sushi igs/${{ env.IG }} --out .
+      # SUSHI will be executed as a gradle-task followed by kotlin tests.
+      - name: 🏃‍♂️ Run tests
+        run: gradle test --continue
+        continue-on-error: true
 
       # Downloads and runs the official FHIR Validator.
       # Doc: https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator
@@ -42,9 +40,16 @@ jobs:
           wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
           java -jar validator_cli.jar fsh-generated/resources -version 4.0 -ig fsh-generated/resources
 
-      - uses: ouzi-dev/commit-status-updater@v1
-        if: failure()
+      - name: Publish results (unit test)
+        if: github.actor != 'dependabot[bot]' # requires write permission
+        uses: EnricoMi/publish-unit-test-result-action@v1
         with:
-          status: "error"
-          description: "Validation error(s)"
-          url: https://github.com/${{github.repository}}/runs/${{github.run_id}}
+          commit: ${{ github.event.workflow_run.head_sha }}
+          files: "**/build/test-results/test/TEST-*.xml"
+
+      - name: Cleanup Gradle Cache
+        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
+        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
+        run: |
+          rm -f ~/.gradle/caches/modules-2/modules-2.lock
+          rm -f ~/.gradle/caches/modules-2/gc.properties          

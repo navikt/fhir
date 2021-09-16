@@ -1,15 +1,21 @@
+import com.github.gradle.node.npm.task.NpxTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm")
     id("org.jlleitschuh.gradle.ktlint")
+    id("com.github.node-gradle.node")
 }
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "16"
+        kotlinOptions.jvmTarget = "11"
+    }
+    register<NpxTask>("sushi") {
+        command.set("fsh-sushi")
     }
     withType<Test> {
+        dependsOn("sushi")
         useJUnitPlatform()
     }
 }
