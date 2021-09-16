@@ -24,18 +24,18 @@ jobs:
           key: fhir-packages
 
       # SUSHI will be executed as a gradle-task followed by kotlin tests.
-      - name: 🏃‍♂ Run tests
+      - name: ✔️ Run tests
         run: gradle test --no-daemon --continue
         continue-on-error: true
 
-      - name: Publish results (unit test)
+      - name: 📤 Publish results (unit test)
         if: github.actor != 'dependabot[bot]' # requires write permission
         uses: EnricoMi/publish-unit-test-result-action@v1
         with:
           commit: ${{ github.event.workflow_run.head_sha }}
           files: "**/build/test-results/test/TEST-*.xml"
 
-      - name: Cleanup Gradle Cache
+      - name: 🧹 Cleanup Gradle Cache
         # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
         # Restoring these files from a GitHub Actions cache might cause problems for future builds.
         run: |
@@ -74,7 +74,8 @@ jobs:
           wget -q https://github.com/hapifhir/org.hl7.fhir.core/releases/latest/download/validator_cli.jar
           java -jar validator_cli.jar fsh-generated/resources -version 4.0 -ig fsh-generated/resources
 
-      - uses: ouzi-dev/commit-status-updater@v1
+      - name: 📤 Publish results
+        uses: ouzi-dev/commit-status-updater@v1.1.2
         if: failure()
         with:
           status: "error"
