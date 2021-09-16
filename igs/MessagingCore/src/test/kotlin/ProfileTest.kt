@@ -1,11 +1,11 @@
 import org.hl7.fhir.r5.model.FhirPublication
 import org.hl7.fhir.r5.model.OperationOutcome
 import org.hl7.fhir.validation.ValidationEngine
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvFileSource
 import org.slf4j.LoggerFactory
+import kotlin.test.fail
 
 // Inspired by https://github.com/HL7/fhir-shc-vaccination-ig
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -27,7 +27,7 @@ class ProfileTest {
         val errorMessages = mutableListOf<String>()
 
         outcome.issue.forEachIndexed { i, it ->
-            val message = "[${i+1}] ${createMessage(it)}"
+            val message = "[${i + 1}] ${createMessage(it)}"
             when (it.severity) {
                 OperationOutcome.IssueSeverity.INFORMATION -> logger.info(message)
                 OperationOutcome.IssueSeverity.WARNING -> logger.warn(message)
@@ -38,14 +38,15 @@ class ProfileTest {
             }
         }
 
-        if (errorMessages.isNotEmpty()) {
-            val failureMessage = StringBuilder().run {
-                appendLine("source: $resource, profile: $profile")
-                outcome.issue.forEachIndexed { i, it -> appendLine("[${i+1}] ${createMessage(it)}") }
-                toString()
-            }
-            Assertions.fail<Any>(failureMessage)
+        if (errorMessages.isEmpty()) return
+
+        val failureMessage = StringBuilder().run {
+            appendLine("source: $resource, profile: $profile")
+            outcome.issue.forEachIndexed { i, it -> appendLine("[${i + 1}] ${createMessage(it)}") }
+            toString()
         }
+
+        fail(failureMessage)
     }
 
     /**
@@ -81,13 +82,13 @@ class ProfileTest {
 
             if (outcome.issue.isNotEmpty()) {
                 appendLine("The following issues were found:")
-                outcome.issue.forEachIndexed { i, it -> appendLine("[${i+1}] ${createMessage(it)}") }
+                outcome.issue.forEachIndexed { i, it -> appendLine("[${i + 1}] ${createMessage(it)}") }
             }
 
             toString()
         }
 
-        Assertions.fail<Any>(failureMessage)
+        fail(failureMessage)
     }
 }
 
