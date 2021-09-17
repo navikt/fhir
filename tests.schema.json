@@ -1,0 +1,114 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "title": "Tests",
+  "description": "Test Cases",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": true,
+    "testCases": {
+      "type": "array",
+      "description": "List of test cases describing a FHIR resource to validate against a profile and the expected outcome.",
+      "additionalProperties": false,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "resource",
+          "profile"
+        ],
+        "properties": {
+          "resource": {
+            "description": "Relative path to the resource (json) to validate.",
+            "type": "string",
+            "pattern": "(.*?).json$"
+          },
+          "profile": {
+            "description": "Canonical URL of the Profile to validate against.",
+            "type": "string",
+            "format": "uri"
+          },
+          "expectedIssues": {
+            "type": "array",
+            "description": "List of issues expected in the validation outcome.",
+            "additionalProperties": false,
+            "uniqueItems": true,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "severity"
+              ],
+              "properties": {
+                "severity": {
+                  "$ref": "#/$defs/severity"
+                },
+                "type": {
+                  "$ref": "#/$defs/type"
+                },
+                "location": {
+                  "description": "FHIRPath to the element within the FHIR resource expected to containing the error.",
+                  "type": "string"
+                },
+                "message": {
+                  "description": "The expected validation error message. Match is partial and case insensitive.",
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "severity": {
+      "$comment": "https://www.hl7.org/fhir/valueset-issue-severity.html",
+      "description": "The expected severity of the issue.",
+      "enum": [
+        "FATAL",
+        "ERROR",
+        "WARNING",
+        "INFORMATION"
+      ]
+    },
+    "type": {
+      "$comment": "https://www.hl7.org/fhir/valueset-issue-type.html",
+      "description": "The expected type of issue.",
+      "enum": [
+        "INVALID",
+        "STRUCTURE",
+        "REQUIRED",
+        "VALUE",
+        "INVARIANT",
+        "SECURITY",
+        "LOGIN",
+        "UNKNOWN",
+        "EXPIRED",
+        "FORBIDDEN",
+        "SUPPRESSED",
+        "PROCESSING",
+        "NOTSUPPORTED",
+        "DUPLICATE",
+        "MULTIPLEMATCHES",
+        "NOTFOUND",
+        "DELETED",
+        "TOOLONG",
+        "CODEINVALID",
+        "EXTENSION",
+        "TOOCOSTLY",
+        "BUSINESSRULE",
+        "CONFLICT",
+        "TRANSIENT",
+        "LOCKERROR",
+        "NOSTORE",
+        "EXCEPTION",
+        "TIMEOUT",
+        "INCOMPLETE",
+        "THROTTLED",
+        "INFORMATIONAL"
+      ]
+    }
+  }
+}

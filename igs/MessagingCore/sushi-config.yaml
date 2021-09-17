@@ -14,6 +14,9 @@ releaseLabel: ci-build
 publisher:
   name: Norwegian Labour and Welfare Administration (NAV)
   url: https://github.com/navikt/fhir
+parameters:
+  show-inherited-invariants: false
+  excludettl: true
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
@@ -21,3 +24,4 @@ publisher:
 menu:
   Home: index.html
   Artifacts: artifacts.html
+  History: CHANGELOG.html
