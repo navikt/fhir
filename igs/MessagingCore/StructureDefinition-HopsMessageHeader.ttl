@@ -25,7 +25,7 @@
   fhir:StructureDefinition.version [ fhir:value "0.1.0"];
   fhir:StructureDefinition.name [ fhir:value "HopsMessageHeader"];
   fhir:StructureDefinition.status [ fhir:value "active"];
-  fhir:StructureDefinition.date [ fhir:value "2021-09-14T10:14:05+00:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2021-09-17T11:58:41+00:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "Norwegian Labour and Welfare Administration (NAV)"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
@@ -1673,7 +1673,7 @@
          fhir:ElementDefinition.constraint.key [ fhir:value "valid-her-id" ];
          fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
          fhir:ElementDefinition.constraint.human [ fhir:value "Must be a valid HER-ID prefixed with OID namespace" ];
-         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.matches('^urn:oid:2\\.16\\.578\\.1\\.12\\.4\\.1\\.2\\.[1-9][0-9]{0,7}$')" ];
+         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.matches('^urn:oid:2\\\\.16\\\\.578\\\\.1\\\\.12\\\\.4\\\\.1\\\\.2\\\\.[1-9][0-9]{0,7}$')" ];
          fhir:ElementDefinition.constraint.source [
            fhir:value "http://fhir.nav.no/StructureDefinition/HopsMessageHeader";
            fhir:link <http://fhir.nav.no/StructureDefinition/HopsMessageHeader>
@@ -3466,7 +3466,7 @@
          fhir:ElementDefinition.constraint.key [ fhir:value "valid-her-id" ];
          fhir:ElementDefinition.constraint.severity [ fhir:value "error" ];
          fhir:ElementDefinition.constraint.human [ fhir:value "Must be a valid HER-ID prefixed with OID namespace" ];
-         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.matches('^urn:oid:2\\.16\\.578\\.1\\.12\\.4\\.1\\.2\\.[1-9][0-9]{0,7}$')" ];
+         fhir:ElementDefinition.constraint.expression [ fhir:value "$this.matches('^urn:oid:2\\\\.16\\\\.578\\\\.1\\\\.12\\\\.4\\\\.1\\\\.2\\\\.[1-9][0-9]{0,7}$')" ];
          fhir:ElementDefinition.constraint.source [
            fhir:value "http://fhir.nav.no/StructureDefinition/HopsMessageHeader";
            fhir:link <http://fhir.nav.no/StructureDefinition/HopsMessageHeader>

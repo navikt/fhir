@@ -19,7 +19,7 @@
   "version": "0.1.0",
   "name": "HopsMessageHeader",
   "status": "active",
-  "date": "2021-09-14T10:14:05+00:00",
+  "date": "2021-09-17T11:58:41+00:00",
   "publisher": "Norwegian Labour and Welfare Administration (NAV)",
   "contact": [
     {
@@ -1599,7 +1599,7 @@
             "key": "valid-her-id",
             "severity": "error",
             "human": "Must be a valid HER-ID prefixed with OID namespace",
-            "expression": "$this.matches('^urn:oid:2\\.16\\.578\\.1\\.12\\.4\\.1\\.2\\.[1-9][0-9]{0,7}$')",
+            "expression": "$this.matches('^urn:oid:2\\\\.16\\\\.578\\\\.1\\\\.12\\\\.4\\\\.1\\\\.2\\\\.[1-9][0-9]{0,7}$')",
             "source": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader"
           }
         ],
@@ -3331,7 +3331,7 @@
             "key": "valid-her-id",
             "severity": "error",
             "human": "Must be a valid HER-ID prefixed with OID namespace",
-            "expression": "$this.matches('^urn:oid:2\\.16\\.578\\.1\\.12\\.4\\.1\\.2\\.[1-9][0-9]{0,7}$')",
+            "expression": "$this.matches('^urn:oid:2\\\\.16\\\\.578\\\\.1\\\\.12\\\\.4\\\\.1\\\\.2\\\\.[1-9][0-9]{0,7}$')",
             "source": "http://fhir.nav.no/StructureDefinition/HopsMessageHeader"
           }
         ]

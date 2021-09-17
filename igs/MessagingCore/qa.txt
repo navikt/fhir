@@ -3,7 +3,7 @@
 
 err = 0, warn = 4, info = 0
 IG Publisher Version: 1.1.80
-Generated Tue Sep 14 10:14:20 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
+Generated Fri Sep 17 11:58:54 UTC 2021. FHIR version 4.0.1 for nav.no.messaging.core.r4#0.1.0 (canonical = http://fhir.nav.no)
 
  Build Errors : 0 / 2 / 0
  /github/workspace/igs/MessagingCore/fsh-generated/resources/ImplementationGuide-nav.no.messaging.core.r4 : 0 / 0 / 1

@@ -10,7 +10,7 @@
   <version value="0.1.0"/>
   <name value="MessagingCore"/>
   <status value="draft"/>
-  <date value="2021-09-14T10:14:05+00:00"/>
+  <date value="2021-09-17T11:58:41+00:00"/>
   <publisher value="Norwegian Labour and Welfare Administration (NAV)"/>
   <contact>
     <name value="Norwegian Labour and Welfare Administration (NAV)"/>
@@ -38,6 +38,30 @@
       </extension>
       <extension url="value">
         <valueString value="ci-build"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="show-inherited-invariants"/>
+      </extension>
+      <extension url="value">
+        <valueString value="false"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="excludettl"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
+      </extension>
+    </extension>
+    <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
+      <extension url="code">
+        <valueString value="autoload-resources"/>
+      </extension>
+      <extension url="value">
+        <valueString value="true"/>
       </extension>
     </extension>
     <extension url="http://hl7.org/fhir/tools/StructureDefinition/ig-parameter">
