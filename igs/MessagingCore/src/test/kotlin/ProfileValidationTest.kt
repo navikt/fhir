@@ -75,7 +75,7 @@ private fun createValidator() =
 data class TestCase(
     val resource: String,
     val profile: String,
-    val expectedIssues: List<Issue> = listOf()
+    val expectedIssues: List<Issue> = emptyList()
 )
 
 data class Issue(
