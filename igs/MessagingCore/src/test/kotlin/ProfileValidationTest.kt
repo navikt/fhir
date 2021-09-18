@@ -1,15 +1,13 @@
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
+import com.sksamuel.hoplite.ConfigLoader
 import org.hl7.fhir.r5.model.FhirPublication
 import org.hl7.fhir.r5.model.OperationOutcome
 import org.hl7.fhir.validation.ValidationEngine
 import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.fail
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import org.slf4j.LoggerFactory
 import java.io.File
-import kotlin.test.fail
 typealias Severity = OperationOutcome.IssueSeverity
 typealias IssueType = OperationOutcome.IssueType
 
@@ -30,7 +28,7 @@ class ProfileValidationTest {
         val missingIssues = input.expectedIssues
             .filterNot { expected -> issues.any { expected.matches(it) } }
         val unexpectedErrors = issues
-            .filterNot { listOf(Severity.INFORMATION, Severity.WARNING).contains(it.severity) }
+            .filterNot { it.severity in listOf(Severity.INFORMATION, Severity.WARNING) }
             .filterNot { input.expectedIssues.any { expected -> expected.matches(it) } }
 
         if (missingIssues.isEmpty() && unexpectedErrors.isEmpty()) return
@@ -52,12 +50,12 @@ class ProfileValidationTest {
     }
 
     companion object {
-        @Serializable
-        private data class Config(val testCases: List<TestCase>)
+        data class Config(val testCases: List<TestCase>)
 
         @JvmStatic
-        fun testCaseSource() = File("src/test/resources/tests.json").run {
-            Json.decodeFromString<Config>(readText()).testCases
+        fun testCaseSource(): List<TestCase> {
+            val file = File("src/test/resources/tests.json")
+            return ConfigLoader().loadConfigOrThrow<Config>(file).testCases
         }
     }
 }
@@ -74,12 +72,17 @@ private fun createValidator() =
         context.loadFromFolder("fsh-generated/resources")
     }
 
-@Serializable
+data class TestCase(
+    val resource: String,
+    val profile: String,
+    val expectedIssues: List<Issue> = listOf()
+)
+
 data class Issue(
     val severity: Severity,
-    val type: IssueType? = null,
-    val location: String? = null,
-    val message: String? = null
+    val type: IssueType?,
+    val location: String?,
+    val message: String?
 ) {
     fun matches(other: Issue): Boolean {
         if (severity != other.severity) return false
@@ -89,12 +92,5 @@ data class Issue(
     }
 }
 
-@Serializable
-data class TestCase(
-    val resource: String,
-    val profile: String,
-    val expectedIssues: List<Issue> = listOf()
-)
-
 private fun OperationOutcome.OperationOutcomeIssueComponent.toData() =
-    Issue(severity, code, expression?.firstOrNull()?.asStringValue(), details?.text)
+    Issue(severity, code, expression.joinToString("|") { it.asStringValue() }, details.text)
