@@ -4,6 +4,8 @@ import org.hl7.fhir.r5.model.OperationOutcome
 import org.hl7.fhir.validation.ValidationEngine
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.fail
+import org.junit.jupiter.api.parallel.Execution
+import org.junit.jupiter.api.parallel.ExecutionMode
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.MethodSource
 import org.slf4j.LoggerFactory
@@ -19,6 +21,7 @@ class ProfileValidationTest {
 
     @ParameterizedTest
     @MethodSource("testCaseSource")
+    @Execution(ExecutionMode.CONCURRENT)
     fun `Validate FHIR Resource according to Profile`(input: TestCase) {
         val outcome = validator.validate("src/test/resources/${input.resource}", listOf(input.profile))
         val issues = outcome.issue.map { it.toData() }
