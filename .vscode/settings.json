@@ -22,13 +22,16 @@
             "url": "https://www.hl7.org/fhir/fhir.schema.json"
         },
         {
-            // The schema provides IntelliSense when editing tests.json files 
+            // The schema provides IntelliSense when editing test specification files
             "fileMatch": [
-                "igs/*/src/test/resources/tests.json",
+                "igs/*/test/*test.json",
             ],
-            "url": "./tests.schema.json"
+            "url": "https://raw.githubusercontent.com/navikt/fhir-validator-junit-engine/main/test-specification.schema.json"
         }
     ],
+    "yaml.schemas": {
+        "https://raw.githubusercontent.com/navikt/fhir-validator-junit-engine/main/test-specification.schema.json": "igs/*/test/*test.yaml",
+    },
     "editor.tabSize": 2,
     "files.eol": "\n"
 }

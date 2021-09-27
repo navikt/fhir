@@ -1,0 +1,14 @@
+---
+validator:
+  version: "4.0"
+  ig:
+    - "../fsh-generated/resources"
+paths:
+  - ../fsh-generated/resources/**
+  - "!../fsh-generated/resources/ImplementationGuide-*"
+tests:
+  - source: instances/message-with-invalid-her-id.json
+    profile: http://fhir.nav.no/StructureDefinition/HopsMessage
+    expectedIssues:
+      - severity: ERROR
+        message: valid-her-id

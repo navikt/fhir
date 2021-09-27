@@ -26,10 +26,19 @@
       "problemMatcher": []
     },
     {
+      "label": "Test",
+      "type": "shell",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/igs:/data:ro navikt/fhir-ig-dev test -d /data",
+      "group": "test",
+      "presentation": {
+        "clear": true
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Validator",
       "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources -ig /data/fsh-generated/resources -version 4.0",
-      "group": "test",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data:ro navikt/fhir-ig-dev validator /data/fsh-generated/resources -ig /data/fsh-generated/resources -version 4.0",
       "presentation": {
         "clear": true
       },
