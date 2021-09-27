@@ -11,11 +11,6 @@ igs/*/_updatePublisher*
 
 # Gradle and IntelliJ
 .idea
-.gradle
-gradle
-gradlew
-gradlew.bat
-**/build
 
 # Liquid template engine output
 package-feed.xml
