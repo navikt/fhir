@@ -28,7 +28,7 @@
     {
       "label": "Test",
       "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/igs:/data:ro navikt/fhir-ig-dev test -d /data",
+      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/igs:/data:ro navikt/fhir-ig-dev test -f /data/*/test/*.yaml",
       "group": "test",
       "presentation": {
         "clear": true
