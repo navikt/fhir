@@ -39,7 +39,7 @@ jobs:
           wget -q https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.8.1/junit-platform-console-standalone-1.8.1.jar
           
       - name: ✔️ Run tests
-        run: java -jar junit-platform-console-standalone-1.8.1.jar -cp fhir-validator-junit-engine.jar:validator_cli.jar -d igs/${{ env.IG }} --reports-dir test-results
+        run: java -jar junit-platform-console-standalone-1.8.1.jar -cp fhir-validator-junit-engine.jar:validator_cli.jar -f igs/${{ env.IG }}/test/*.yaml --reports-dir test-results
 
       - name: 📤 Publish results (unit test)
         if: github.actor != 'dependabot[bot]' # requires write permission
