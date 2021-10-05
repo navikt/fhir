@@ -25,7 +25,7 @@
   fhir:StructureDefinition.version [ fhir:value "0.1.0"];
   fhir:StructureDefinition.name [ fhir:value "HopsMessageHeader"];
   fhir:StructureDefinition.status [ fhir:value "active"];
-  fhir:StructureDefinition.date [ fhir:value "2021-09-17T11:58:41+00:00"^^xsd:dateTime];
+  fhir:StructureDefinition.date [ fhir:value "2021-10-05T17:38:14+00:00"^^xsd:dateTime];
   fhir:StructureDefinition.publisher [ fhir:value "Norwegian Labour and Welfare Administration (NAV)"];
   fhir:StructureDefinition.contact [
      fhir:index 0;
