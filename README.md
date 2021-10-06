@@ -29,13 +29,13 @@ Mao. er det en 1:1:1 mapping mellom FSH-project, IG og FHIR Package.
 ## 📦 IG Publisher
 [IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation) er en open source java applikasjon ([github](https://github.com/HL7/fhir-ig-publisher)) som tar FHIR-ressurser, markdown og bilder som input og bruker Jekyll til å generere en statisk HTML-side som kan brukes som dokumentasjon. Dette pakker den også i en FHIR NPM Package for distribuering.
 
-Et FSH-prosjekt følger en [bestemt struktur](https://fshschool.org/docs/sushi/project/), denne strukturen har likheter med [strukturen som forventes av IG Publisher](https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html). Tidligere var det slik at SUSHI måtte kjøres på et FSH-prosjekt for å generere inputten til IG Publisher, men [fra og med v1.0.75 er dette unødvendig](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-publisher-integration-autobuild-configuration).
+Et FSH-prosjekt følger en [bestemt struktur](https://fshschool.org/docs/sushi/project/), denne strukturen har likheter med [strukturen som forventes av IG Publisher](https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html). Tidligere var det slik at SUSHI måtte kjøres på et FSH-prosjekt for å generere inputen til IG Publisher, men [fra og med v1.0.75 er dette unødvendig](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-publisher-integration-autobuild-configuration).
 
 ## 🧪 Testing
 Testing av profiler gjøres ved å bruke den offisielle FHIR-validatoren. Her bruker vi [fhir-validator-junit-engine](https://github.com/navikt/fhir-validator-junit-engine) for å definere og kjøre test-scenarioer i YAML-filer.
 
 ## 🚀 CI/CD
-Generering og deployment av IG-ene gjøres vha. github-actions som kjører IG Publisher og commiter artefaktene (html, css, js, assets) til en egen **gh-pages branch** som hostes med github-pages. Dette kan alternativt bli gjort av HL7 sin [Auto-IG-builder](https://github.com/FHIR/auto-ig-builder), men da mister vi litt fleksibilitet, vi må f.eks bruke domenet `https://build.fhir.org/ig`.
+Generering og deployment av IG-ene gjøres vha. github-actions som kjører IG Publisher og committer artefaktene (html, css, js, assets) til en egen **gh-pages branch** som hostes med github-pages. Dette kan alternativt bli gjort av HL7 sin [Auto-IG-builder](https://github.com/FHIR/auto-ig-builder), men da mister vi litt fleksibilitet, vi må f.eks bruke domenet: `https://build.fhir.org/ig`.
 
 ### Releases
 Publisering av releases til [FHIR Package Registry](https://registry.fhir.org/) krever en del manuelle steg som er [dokumentert her](https://confluence.hl7.org/pages/viewpage.action?pageId=97454344#FHIRPackageRegistryUserDocumentation-Themanualprocess). Vi har prøvd å automatisere dette så mye som mulig vha. GitHub-actions. 
