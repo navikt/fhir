@@ -59,8 +59,9 @@ Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan bruke
 ![how to run tasks gif](docs/run-task.gif)
 
 ## 🐋 Docker build image
+Denne seksjonen trenger du ikke forholde deg til dersom du bruker Tasks i vscode.
+
 Fordi transformeringen av et FSH Project til en IG krever mange dependencies (java, nodejs, npm, ruby, jekyll, sushi, ig-publisher etc.) har vi laget en Dockerfile for å bygge et docker-image som inneholder både SUSHI, IG-Publisher og [FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator) + alle nødvendige dependencies. 
-Hvis du bruker vscode og de definerte tasksene trenger du ikke forholde deg til følgende, men her er hvordan du bruker imaget:
 
 Kjør følgende kommando fra .docker katalogen til dette repoet for å bygge docker-imaget, dette tar ca 4 minutter.
 ```
