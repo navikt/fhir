@@ -1,0 +1,26 @@
+# ╭──────────────────────────────────────ImplementationGuide───────────────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                    │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: no.nav.smartforms
+canonical: http://fhir.nav.no
+name: SmartForms
+description: An IG describing the required capabilities of a FHIR Server serving NAV's SMART on FHIR form filler application.
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2021+
+releaseLabel: ci-build
+publisher:
+  name: Norwegian Labour and Welfare Administration (NAV)
+  url: https://github.com/navikt/fhir
+parameters:
+  show-inherited-invariants: false
+  excludettl: true  
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To use a provided input/includes/menu.xml file, delete the "menu" property below.             │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Home: index.html
+  Artifacts: artifacts.html

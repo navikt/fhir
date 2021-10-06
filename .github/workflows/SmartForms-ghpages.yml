@@ -1,0 +1,61 @@
+name: SmartForms-ghpages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ig-template/**
+      - igs/SmartForms/input/**
+      - igs/SmartForms/ig.ini
+      - igs/SmartForms/sushi-config.yaml
+  workflow_dispatch:
+
+env:
+  IG: SmartForms
+
+# The following jobs are equal for all IGs and can be moved to a common composite-action if 'uses'-support is added, see:
+# https://github.com/actions/runner/blob/main/docs/adrs/1144-composite-actions.md
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      # Persist the FHIR Package Cache between runners.
+      # Doc: https://confluence.hl7.org/display/FHIR/FHIR+Package+Cache
+      - name: 🗂️ Cache FHIR Packages
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.fhir/packages
+          key: fhir-packages
+
+      # Persist the IG Publisher input-cache between runners.
+      # Doc: https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html#igroot-input-cache
+      - name: 🗂️ Cache IG Publisher input-cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            igs/${{ env.IG }}/input-cache
+          key: ig-publisher-input-cache           
+
+      # Downloads the newest version of the IG Publisher, this could probable be cached.
+      - name: 📥 Download IG Publisher
+        run: wget -q https://github.com/HL7/fhir-ig-publisher/releases/latest/download/publisher.jar
+
+      # Builds the HTML page for the IG.
+      - name: 🏃‍♂️ Run IG Publisher
+        uses: docker://hl7fhir/ig-publisher-base:latest
+        with:
+          args: java -jar publisher.jar publisher -ig igs/${{ env.IG }}/ig.ini -publish https://navikt.github.io/fhir/igs/${{ env.IG }}
+
+      # Publishes the HTML page to a seperate branch in order to host it using GitHub-Pages.
+      # This will overwrite the currently published HTML page.
+      - name: 🚀 Deploy to GitHub-Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: igs/${{ env.IG }}/output
+          destination_dir: igs/${{ env.IG }}
+          exclude_assets: '**.zip,**.tgz,**.pack'
+          commit_message: '${{ env.IG }}: ${{ github.event.head_commit.message }}'
