@@ -9,7 +9,7 @@ Repoet inneholder [FHIR Shorthand](https://fshschool.org/) (FSH) prosjekter. FSH
 
 SUSHI bruker **sushi-config.yaml** [for å generere](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#configuration-file) **package-list.json og menu.xml** som kreves av IG Publisher, disse filene er derfor heller ikke med.
 
-NAV har valgt å bruke FSH istedenfor [Forge](https://fire.ly/products/forge/): Et GUI verktøy som generer FHIR-ressurser. Fordi det gir bedre kildekodekontroll og lettere lar seg integerere i CI\CD-pipelines. Forge krever også lisens og fungerer bare på Windows.
+NAV har valgt å bruke FSH istedenfor [Forge](https://fire.ly/products/forge/): Et GUI-verktøy som generer FHIR-ressurser. Fordi det gir bedre kildekodekontroll og lettere lar seg integerere i CI\CD-pipelines. Forge krever også lisens og fungerer bare på Windows.
 
 For å eksperimentere med FSH kan web-verktøyet [FSH Online](https://fshschool.org/FSHOnline/#/) anbefales.
 
