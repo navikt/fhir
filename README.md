@@ -7,7 +7,7 @@ De forskjellige IG-ene genereres og publiseres automatisk som github-pages:
 ## 🐟 FHIR Shorthand og SUSHI
 Repoet inneholder [FHIR Shorthand](https://fshschool.org/) (FSH) prosjekter. FSH er et deklarativt og utviklervennelig språk for å definere FHIR-ressursene som inngår i profiler. FHIR-ressurser genereres vha. [SUSHI](https://github.com/FHIR/sushi): En kompilator som transformerer FSH til FHIR-ressurser. Dette repoet inneholde derfor ikke FHIR-ressurser av type ImplementationGuide, StructureDefinition, CodeSystem, ValueSet etc.
 
-SUSHI vil også benytte **sushi-config.yaml** [for å generere](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#configuration-file) **package-list.json og menu.xml** som kreves av IG Publisher, disse filene er derfor heller ikke med.
+SUSHI bruker **sushi-config.yaml** [for å generere](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#configuration-file) **package-list.json og menu.xml** som kreves av IG Publisher, disse filene er derfor heller ikke med.
 
 NAV har valgt å bruke FSH istedenfor [Forge](https://fire.ly/products/forge/): Et GUI verktøy som generer FHIR-ressurser. Fordi det gir bedre kildekodekontroll og lettere lar seg integerere i CI\CD-pipelines. Forge krever også lisens og fungerer bare på Windows.
 
