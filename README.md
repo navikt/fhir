@@ -66,7 +66,7 @@ Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan bruke
 ## 🐋 Docker build image
 Denne seksjonen trenger du ikke forholde deg til dersom du bruker Tasks i vscode.
 
-Fordi transformeringen av et FSH-prosjekt til en IG krever mange dependencies (java, nodejs, npm, ruby, jekyll, sushi, ig-publisher etc.) har vi laget en Dockerfile for å bygge et docker-image som inneholder både SUSHI, IG-Publisher og [FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator) + alle nødvendige dependencies. 
+Fordi transformeringen av et FSH-prosjekt til en IG krever mange dependencies (java, nodejs, npm, ruby, jekyll, sushi, ig-publisher etc.) har vi laget en Dockerfile for å bygge et docker-image som inneholder både SUSHI, IG Publisher og [FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator) + alle nødvendige dependencies. 
 
 Kjør følgende kommando fra *.docker* katalogen til dette repoet for å bygge docker-imaget, dette tar ca 4 minutter.
 ```
@@ -86,7 +86,7 @@ docker run --rm -v c:\repos\fhir\igs\MessagingCore:/data navikt/fhir-ig-dev sush
 docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources
 ```
 
-[IG-Publisher](https://wiki.hl7.org/IG_Publisher_Documentation#Running_in_command_line_mode) kjøres med følgende kommando, dette tar gjerne 3-4 minutter og vil generere en rekke kataloger innenfor prosjektet.
+[IG Publisher](https://wiki.hl7.org/IG_Publisher_Documentation#Running_in_command_line_mode) kjøres med følgende kommando, dette tar gjerne 3-4 minutter og vil generere en rekke kataloger innenfor prosjektet.
 ```
 docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev publisher -ig /data/ig.ini
 ```
