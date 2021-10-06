@@ -1,5 +1,10 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono);
 
+
+
+/*
+* FONTS
+*/
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -75,91 +80,17 @@ p {
   font-size: 16px;
 }
 
-html {
-  background-color: rgb(22, 23, 29);
-}
-
-#segment-footer {
-  background-color: rgba(26, 27, 35, 0.87);
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-#segment-footer * {
-  padding: 0 !important;
-}
 #segment-footer p {
   font-size: 14px;
-}
-
-#segment-footer *,
-#segment-content *,
-#segment-navbar *,
-#segment-breadcrumb *,
-#segment-header .container {
-  background: none;
-}
-
-#segment-breadcrumb,
-#segment-content {
-  background-color: rgb(46, 48, 62);
 }
 
 a {
   text-decoration: underline;
 }
 
-#segment-content a {
-  color: hsla(200, 18%, 46%, 1);
-}
-
-#segment-content a:hover {
-  color: rgb(124, 77, 255);
-}
-
-#segment-navbar {
-  background-color: rgb(84, 109, 120);
-}
-
 [data-anchorjs-icon]::after {
   content: "¶";
 }
-
-#segment-header {
-  background-color: rgb(84, 109, 120);
-}
-#ig-status {
-  float: right;
-}
-
-#nav-logo img {
-  margin-top: 10px;
-}
-
-div.markdown-toc {
-  width: 234px;
-  border: none;
-}
-
-div.markdown-toc * {
-  font-size: 14px !important;
-}
-
-.nav-tabs {
-  border-bottom: 1px solid white;
-}
-
-.nav-tabs > li.active > a,
-.nav-tabs > li.active > a:hover,
-.nav-tabs > li.active > a:focus {
-  border: 1px solid white;
-  border-bottom-color: rgb(46, 48, 62)!important;
-}
-
-.nav-tabs li a:hover,
-.nav-tabs li a:focus {
-  border-bottom-color: rgb(46, 48, 62)!important;
-}
-
 
 ul.dict li,
 table.dict td,
@@ -184,6 +115,113 @@ table.grid th,
 table.grid td {
   line-height: 25px;
   font-size: 16px;
+}
+
+ul.breadcrumb * {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/*
+* BACKGROUNDS
+*/
+html {
+  background-color: rgb(22, 23, 29);
+}
+
+#segment-footer {
+  background-color: rgba(26, 27, 35, 0.87);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#segment-footer * {
+  padding: 0 !important;
+}
+
+#segment-footer *,
+#segment-content *,
+#segment-navbar *,
+#segment-breadcrumb *,
+#segment-header .container,
+#segment-footer > .container {
+  background: none;
+}
+
+#segment-breadcrumb,
+#segment-content {
+  background-color: rgb(46, 48, 62);
+}
+
+
+#segment-content a {
+  color: hsla(200, 18%, 46%, 1);
+}
+
+#segment-content a:hover {
+  color: rgb(124, 77, 255);
+}
+
+#segment-navbar {
+  background-color: rgb(84, 109, 120);
+}
+
+#segment-header {
+  background-color: rgb(84, 109, 120);
+}
+
+/*
+* ELEMENTS
+*/
+#ig-status {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  height: auto;
+}
+#ig-status * {
+  font-size: 12px;
+}
+
+#publish-box {
+  border:none;
+  background-color: rgba(255, 145, 0, 0.1);
+  border-left: 4px solid  rgb(255, 145, 0);
+  padding-left: 15px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+}
+
+#nav-logo img {
+  margin-top: 10px;
+}
+
+div.markdown-toc {
+  width: 234px;
+  border: none;
+}
+
+div.markdown-toc * {
+  font-size: 14px !important;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid white;
+}
+
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  border: 1px solid white;
+  border-bottom-color: rgb(46, 48, 62) !important;
+}
+
+.nav-tabs li a:hover,
+.nav-tabs li a:focus {
+  border-bottom-color: rgb(46, 48, 62) !important;
 }
 
 pre {
@@ -220,6 +258,7 @@ table.grid {
 }
 table {
   width: 100%;
+  margin-bottom: 18px;
 }
 table.grid td {
   padding-left: 20px;
@@ -247,7 +286,58 @@ table.dict td.structure {
   line-height: 40px;
 }
 
-ul.breadcrumb * {
-  font-size: 14px;
-  font-weight: 400;
+/* 
+* SOURCE THING 
+*/ 
+.nav-source {
+  float: right;
+  width: 250px;
 }
+
+.nav-source-icon {
+  width: 48px;
+  height: 48px;
+}
+.nav-source-icon svg {
+  fill: white;
+  width: 24px;
+  height: 24px;
+  margin: 12px;
+}
+
+.nav-source ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-source ul li {
+  float: left;
+  font-weight: 700;
+  font-size: 11px;
+}
+.nav-source ul li::before {
+  margin: 0 .1rem;
+  content: "\00B7";
+}
+.nav-source ul li:first-child::before {
+  display: none;
+}
+
+.nav-source * {
+  text-decoration: none!important;
+}
+.nav-source a > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+.nav-source-repo-name {
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  margin-top: 10px;
+}
+
+
+
+
