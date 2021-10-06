@@ -81,7 +81,7 @@ docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev sushi /data
 docker run --rm -v c:\repos\fhir\igs\MessagingCore:/data navikt/fhir-ig-dev sushi /data
 ```
 
-[FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator#UsingtheFHIRValidator-Runningthevalidator) brukes for å validere FHIR-ressurser og f.eks ressursene generert av SUSHI kan valideres med følgende kommando.
+[FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator#UsingtheFHIRValidator-Runningthevalidator) brukes for å validere FHIR-ressurser, og f.eks ressursene generert av SUSHI kan valideres med følgende kommando.
 ```
 docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev validator /data/fsh-generated/resources
 ```
@@ -92,7 +92,7 @@ docker run --rm -v {fsh-project-dir}:/data navikt/fhir-ig-dev publisher -ig /dat
 ```
 
 ### Package-cache
-Eksemplene over bruker alle [`--rm`](https://docs.docker.com/engine/reference/run/#clean-up---rm) flagget som gjør at containeren slettes etter kjøringen, dette vil si at alle pakker må lastes ned for hver gang og det kan derfor være greit å lage et eget volume for **package-cache**, i tillegg kan det være greit å bruke `-it` flagget slik at du kan bruke *ctrl+c* for å avbryte kjøringer. Eksempel med SUSHI blir da følgende (gjelder også validator og publisher).
+Eksemplene over bruker alle [`--rm`](https://docs.docker.com/engine/reference/run/#clean-up---rm) flagget som gjør at containeren slettes etter kjøringen, dette vil si at alle pakker må lastes ned for hver gang og det kan derfor være greit å lage et eget volume for **package-cache**, i tillegg kan det være greit å bruke `-it` flagget slik at du kan bruke *ctrl+c* for å avbryte kjøringer. Eksempel med SUSHI blir da følgende (gjelder også validator og publisher):
 ```
 docker run -it --rm -v package-cache:/root/.fhir -v c:\repos\fhir\igs\MessagingCore:/data navikt/fhir-ig-dev sushi /data
 ```
