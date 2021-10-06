@@ -1,0 +1,9 @@
+[
+  {
+    "id": "no.nav.smartforms",
+    "type": "ImplementationGuide",
+    "url": "http://fhir.nav.no/ImplementationGuide/no.nav.smartforms",
+    "version": "0.1.0",
+    "name": "SmartForms"
+  }
+]
