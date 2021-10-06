@@ -16,7 +16,7 @@ For å eksperimentere med FSH kan web-verktøyet [FSH Online](https://fshschool.
 ## 📙 Bruk av begreper
 I FHIR-verden brukes ofte begrepene implementasjonsguide, pakke, profiler og kontrakter\datamodeller om hverandre. Dette kan være forvirrende og vi skal prøve å oppklare:
 
-* En [FHIR profil](https://www.hl7.org/fhir/profiling.html) er en kontrakt (datamodell+regler) for bruk av en FHIR-ressurs (f.eks Patient). En profil er implementert som egne FHIR-ressurser (json/xml) laget for dette formålet, f.eks StructureDefinition.
+* En [FHIR-profil](https://www.hl7.org/fhir/profiling.html) er en kontrakt (datamodell+regler) for bruk av en FHIR-ressurs (f.eks Patient). En profil er implementert som egne FHIR-ressurser (json/xml) laget for dette formålet, f.eks StructureDefinition.
 * En FHIR Implementation Guide er en samling av:
     * FHIR-ressurser som utgjør profiler.
     * En HTML-side for human-readable dokumentasjon.
