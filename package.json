@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "start": "http-server -a localhost -p 5052 igs/MessagingCore/output",
+    "watch": "syncdir --watch ig-template/content/ext/ igs/MessagingCore/output/ext"
+  },
+  "devDependencies": {
+    "http-server": "^13.0.2",
+    "sync-directory": "^2.2.22"
+  }
+}

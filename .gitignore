@@ -14,3 +14,6 @@ igs/*/_updatePublisher*
 
 # Liquid template engine output
 package-feed.xml
+
+# Support tools for template development
+node_modules
