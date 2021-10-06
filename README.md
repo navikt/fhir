@@ -55,7 +55,7 @@ For å bygge IG-er lokalt trenger du SUSHI, IG Publisher og alle avhengighetene.
 ## 👨‍💻 Visual Studio Code
 For utvikling av IG-er er det greit å bruke [vscode](https://code.visualstudio.com/).
 
-[vscode-language-fsh](https://marketplace.visualstudio.com/items?itemName=kmahalingam.vscode-language-fsh) extension hjelper med litt syntax-highlighting og IntelliSense og skal komme som en [anbefaling](.vscode/extensions.json) når du åpner repoet i vscode.
+[vscode-language-fsh](https://marketplace.visualstudio.com/items?itemName=kmahalingam.vscode-language-fsh) extension hjelper med litt syntax-highlighting og IntelliSense, og skal komme som en [anbefaling](.vscode/extensions.json) når du åpner repoet i vscode.
 
 Vi har lagt til FHIR json-schema referanse i [.vscode/settings.json](.vscode/settings.json) slik at du får IntelliSense dersom du jobber med FHIR json-ressurser direkte.
 
