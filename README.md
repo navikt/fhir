@@ -2,6 +2,7 @@
 Dette repoet er tiltenkt å fungerer som et monorepo for kildekoden til alle NAV sine FHIR Implementation Guides (IG).
 De forskjellige IGene genereres og publiseres automatisk som github-pages:
 1. [MessagingCore](https://navikt.github.io/fhir/igs/MessagingCore/)
+2. [SMART Forms](https://navikt.github.io/fhir/igs/SmartForms/)
 
 ## 🐟 FHIR Shorthand og SUSHI
 Repoet inneholder [FHIR Shorthand](https://fshschool.org/) (FSH) prosjekter. FSH er et deklarativt og utviklervennelig språk for å definere FHIR ressursene som inngår i profiler. FHIR ressurser genereres vha. [SUSHI](https://github.com/FHIR/sushi); en kompilator som transformerer FSH til FHIR ressurser, dette repoet inneholde derfor ikke FHIR ressurser av type ImplementationGuide, StructureDefinition, CodeSystem, ValueSet etc.
