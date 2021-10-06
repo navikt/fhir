@@ -27,7 +27,7 @@ I FHIR-verden brukes ofte begrepene implementasjonsguide, pakke, profiler og kon
 Mao. er det en 1:1:1 mapping mellom FSH-project, IG og FHIR Package.
 
 ## 📦 IG Publisher
-[IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation) er en open source java applikasjon ([github](https://github.com/HL7/fhir-ig-publisher)) som tar FHIR-ressurser, markdown og bilder som input og bruker Jekyll til å generere en statisk HTML-side som kan brukes som dokumentasjon. Dette pakker den også i en FHIR NPM Package for distribuering.
+[IG Publisher](https://confluence.hl7.org/display/FHIR/IG+Publisher+Documentation) er en open source java applikasjon ([github](https://github.com/HL7/fhir-ig-publisher)) som tar FHIR-ressurser, markdown og bilder som input, og bruker Jekyll til å generere en statisk HTML-side som kan brukes som dokumentasjon. Dette pakker den også i en FHIR NPM Package for distribuering.
 
 Et FSH-prosjekt følger en [bestemt struktur](https://fshschool.org/docs/sushi/project/), denne strukturen har likheter med [strukturen som forventes av IG Publisher](https://build.fhir.org/ig/FHIR/ig-guidance/using-templates.html). Tidligere var det slik at SUSHI måtte kjøres på et FSH-prosjekt for å generere inputen til IG Publisher, men [fra og med v1.0.75 er dette unødvendig](http://build.fhir.org/ig/HL7/fhir-shorthand/branches/beta/sushi.html#ig-publisher-integration-autobuild-configuration).
 
