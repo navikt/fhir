@@ -10,11 +10,11 @@ The primary actors in context of this IG are:
 1.  **NAV** is the Norwegian Labour and Welfare Administration and includes all the services managed by NAV.
 
 ### Messaging vs. RESTful
-FHIR Messaging and FHIR RESTful API are two patterns defined in the [FHIR specification](https://www.hl7.org/fhir/exchange-module.html).
+FHIR Messaging and FHIR RESTful API are two of the patterns defined in the [FHIR specification](https://www.hl7.org/fhir/exchange-module.html).
 
 The RESTful API pattern is the most stable and widely used pattern for exchanging FHIR resources. This pattern is well suited for exchanging data between front-end apps and back-end services, e.g. SMART-on-FHIR apps.
 
-The Messaging pattern can be more suitable for exchange between disparate organizations with low levels of process integration and/or trust. For instance, it might be preferred by an organization/system that has not necessarily adopted FHIR internally to receive a FHIR message containing a coherent snapshot of the complete context. The alternative would be to pull the required resources from multiple REST endpoints, where the lifecycle and versioning of these resources also must be considered.
+The Messaging pattern can be more suitable for exchange between disparate organizations with low levels of process integration and/or trust. For instance, it might be preferred by an organization/system that has not necessarily adopted FHIR internally, because they can receive FHIR messages containing a coherent snapshot of a complete context. The alternative would be to pull the required resources from multiple REST endpoints, where the lifecycle and versioning of these resources also must be considered.
 
 Figure 1 visualizes exchange of FHIR messages between three different organizations, each having multiple internal systems that communicates using different patterns and protocols.
 
