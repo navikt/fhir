@@ -1,6 +1,8 @@
 This [FHIR Implementation Guide](https://www.hl7.org/fhir/implementationguide.html) (IG) describes a **proposal** to how the [FHIR messaging pattern](https://www.hl7.org/fhir/messaging.html) can be used in communication between NAV and Electronic Health Record (EHR) systems.
 
-There are currently no national IG on how FHIR messaging shall be used in Norway, but the need for such an IG [has been recognized](https://github.com/HL7Norway/best-practice/blob/master/docs/messaging.md) by The Norwegian Directorate of eHealth, partially to replace the currently used ebXML-based [Dialogmelding](https://www.ehelse.no/Standardisering/standarder/dialogmelding-v1.1). This is why NAV is developing this IG, which hopefully can contribute in creating an official national IG accepted by the Norwegian health sector. NAV is committed to adhere to whatever standards or best-practices the Norwegian health sector adopts, and have no interest in creating a separate custom integration pattern, it is therefore important to recognize this IG as a *proposal*, which is open to feedback and adjustments.
+There are currently no national IG on how FHIR messaging shall be used in Norway, but the need for such an IG [has been recognized](https://github.com/HL7Norway/best-practice/blob/master/docs/messaging.md) by The Norwegian Directorate of eHealth, partially to replace the currently used ebXML-based [Dialogmelding](https://www.ehelse.no/Standardisering/standarder/dialogmelding-v1.1). This is why NAV is developing this IG, which hopefully can contribute in creating an official national IG accepted by the Norwegian health sector.
+
+NAV is committed to adhere to whatever standards or best-practices the Norwegian health sector adopts, and have no interest in creating a separate custom integration pattern, it is therefore important to recognize this IG as a *proposal*, which is open to feedback and adjustments.
 
 ### Actors
 The primary actors in context of this IG are:
