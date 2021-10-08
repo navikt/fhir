@@ -152,18 +152,67 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
 
     <p><!-- white space is critical inside of capture --></p>
-<div>
-<!-- do not remove - needed to prevent Jekyll from adding a p tag to any non block level element in the markdown.-->
+<div class="markdown-toc">
+<ul id="markdown-toc">
+  <li><a href="#actors" id="markdown-toc-actors">Actors</a></li>
+  <li><a href="#messaging-vs-restful" id="markdown-toc-messaging-vs-restful">Messaging vs. RESTful</a></li>
+  <li><a href="#workflow" id="markdown-toc-workflow">Workflow</a></li>
+  <li><a href="#polling-vs-pushing" id="markdown-toc-polling-vs-pushing">Polling vs. Pushing</a></li>
+  <li><a href="#addressing-her-id" id="markdown-toc-addressing-her-id">Addressing (HER-id)</a></li>
+</ul>
+
 </div>
 <p>This <a href="https://www.hl7.org/fhir/implementationguide.html">FHIR Implementation Guide</a> (IG) describes a <strong>proposal</strong> to how the <a href="https://www.hl7.org/fhir/messaging.html">FHIR messaging pattern</a> can be used in communication between NAV and Electronic Health Record (EHR) systems.</p>
 
-<p>There are currently no national IG on how FHIR messaging shall be used in Norway, but the need for such an IG <a href="https://github.com/HL7Norway/best-practice/blob/master/docs/messaging.md">has been recognized</a> by The Norwegian Directorate of eHealth, partially to replace the currently used ebXML-based <a href="https://www.ehelse.no/Standardisering/standarder/dialogmelding-v1.1">Dialogmelding</a>. This is why NAV is developing this IG, which hopefully can contribute to creating an official national IG accepted by the norwegian health sector. NAV is committed to adhere to whatever standards or best-practices the norwegian health sector adopts, and have no interest in creating a seperate custom integration pattern. It is therefore important to recognize this IG as a <em>proposal</em>, which is open to feedback and adjustments.</p>
+<p>There are currently no national IG on how FHIR messaging shall be used in Norway, but the need for such an IG <a href="https://github.com/HL7Norway/best-practice/blob/master/docs/messaging.md">has been recognized</a> by The Norwegian Directorate of eHealth, partially to replace the currently used ebXML-based <a href="https://www.ehelse.no/Standardisering/standarder/dialogmelding-v1.1">Dialogmelding</a>. This is why NAV is developing this IG, which hopefully can contribute in creating an official national IG accepted by the Norwegian health sector. NAV is committed to adhere to whatever standards or best-practices the Norwegian health sector adopts, and have no interest in creating a separate custom integration pattern, it is therefore important to recognize this IG as a <em>proposal</em>, which is open to feedback and adjustments.</p>
 
-<h3 id="messaging">Messaging</h3>
-<p>FHIR Messaging and FHIR RESTful API are two patterns defined in the FHIR specification.</p>
+<h3 id="actors">Actors</h3>
+<p>The primary actors in context of this IG are:</p>
+<ol>
+  <li><strong>EHRs</strong>, “Elektronisk Pasient Journal (EPJ)”, are systems that contains and manages health information related to a patient and the services that operate on this data.</li>
+  <li><strong>NAV</strong> is the Norwegian Labour and Welfare Administration and includes all the services managed by NAV.</li>
+</ol>
+
+<h3 id="messaging-vs-restful">Messaging vs. RESTful</h3>
+<p>FHIR Messaging and FHIR RESTful API are two patterns defined in the <a href="https://www.hl7.org/fhir/exchange-module.html">FHIR specification</a>.</p>
+
+<p>The RESTful API pattern is the most stable and widely used pattern for exchanging FHIR resources. This pattern is well suited for exchanging data between front-end apps and back-end services, e.g. SMART-on-FHIR apps.</p>
+
+<p>The Messaging pattern can be more suitable for exchange between disparate organizations with low levels of process integration and/or trust. For instance, it might be preferred by an organization/system that has not necessarily adopted FHIR internally to receive a FHIR message containing a coherent snapshot of the complete context. The alternative would be to pull the required resources from multiple REST endpoints, where the lifecycle and versioning of these resources also must be considered.</p>
+
+<p>Figure 1 visualizes exchange of FHIR messages between three different organizations, each having multiple internal systems that communicates using different patterns and protocols.</p>
 
 <h4 id="figure-1">Figure 1</h4>
-<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZmxvd2NoYXJ0ICBcbiAgICBzdWJncmFwaCBOQVZcbiAgICBkaXJlY3Rpb24gTFJcbiAgICB5MS0tPnxGSElSIFJFU1RmdWx8eTJcbiAgICB5MS0tPnxLYWZrYXx5M1xuICAgIGVuZFxuICAgIHN1YmdyYXBoIEVIUjJcbiAgICB6Mi0tPnoxXG4gICAgejEtLT58bm90IEZISVJ8ejJcbiAgICBlbmRcbiAgICBzdWJncmFwaCBFSFIxXG4gICAgZGlyZWN0aW9uIExSXG4gICAgeDEtLT54MlxuICAgIHgyLS0-fEZISVIgUkVTVGZ1bHx4M1xuICAgIHgzLS0-eDJcbiAgICB4NC0tPngzXG4gICAgZW5kXG4gICAgRUhSMS0uIEZISVIgTWVzc2FnaW5nIC4tPk5BVlxuICAgIE5BVi0uLT5FSFIxXG4gICAgTkFWLS4gRkhJUiBNZXNzYWdpbmcgLi0-RUhSMlxuICAgIEVIUjItLi0-TkFWXG4gICAgc3R5bGUgRUhSMSBmaWxsOiM1NDk5Qzcsc3Ryb2tlOiMzMzNcbiAgICBzdHlsZSBOQVYgZmlsbDojRTc0QzNDLHN0cm9rZTojMzMzIiwibWVybWFpZCI6IntcbiAgXCJ0aGVtZVwiOiBcImRlZmF1bHRcIlxufSIsInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0"><img src="https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0ICBcbiAgICBzdWJncmFwaCBOQVZcbiAgICBkaXJlY3Rpb24gTFJcbiAgICB5MS0tPnxGSElSIFJFU1RmdWx8eTJcbiAgICB5MS0tPnxLYWZrYXx5M1xuICAgIGVuZFxuICAgIHN1YmdyYXBoIEVIUjJcbiAgICB6Mi0tPnoxXG4gICAgejEtLT58bm90IEZISVJ8ejJcbiAgICBlbmRcbiAgICBzdWJncmFwaCBFSFIxXG4gICAgZGlyZWN0aW9uIExSXG4gICAgeDEtLT54MlxuICAgIHgyLS0-fEZISVIgUkVTVGZ1bHx4M1xuICAgIHgzLS0-eDJcbiAgICB4NC0tPngzXG4gICAgZW5kXG4gICAgRUhSMS0uIEZISVIgTWVzc2FnaW5nIC4tPk5BVlxuICAgIE5BVi0uLT5FSFIxXG4gICAgTkFWLS4gRkhJUiBNZXNzYWdpbmcgLi0-RUhSMlxuICAgIEVIUjItLi0-TkFWXG4gICAgc3R5bGUgRUhSMSBmaWxsOiM1NDk5Qzcsc3Ryb2tlOiMzMzNcbiAgICBzdHlsZSBOQVYgZmlsbDojRTc0QzNDLHN0cm9rZTojMzMzIiwibWVybWFpZCI6eyJ0aGVtZSI6ImRlZmF1bHQifSwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ" alt="" /></a></p>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoiZmxvd2NoYXJ0ICBcbiAgICBzdWJncmFwaCBOQVZcbiAgICBkaXJlY3Rpb24gTFJcbiAgICB5MS0tPnxGSElSIFJFU1RmdWx8eTJcbiAgICB5MS0tPnxLYWZrYXx5M1xuICAgIGVuZFxuICAgIHN1YmdyYXBoIEVIUjJcbiAgICB6Mi0tPnoxXG4gICAgejEtLT58cHJvcHJpZXRhcnl8ejJcbiAgICB6My0tPnxvcGVuRUhSfHoyXG4gICAgZW5kXG4gICAgc3ViZ3JhcGggRUhSMVxuICAgIGRpcmVjdGlvbiBMUlxuICAgIHgxLS0-eDJcbiAgICB4Mi0tPnxGSElSIFJFU1RmdWx8eDNcbiAgICB4My0tPngyXG4gICAgeDQtLT58cHJvcHJpZXRhcnl8eDNcbiAgICBlbmRcbiAgICBFSFIxLS4gRkhJUiBNZXNzYWdpbmcgLi0-TkFWXG4gICAgTkFWLS4tPkVIUjFcbiAgICBOQVYtLiBGSElSIE1lc3NhZ2luZyAuLT5FSFIyXG4gICAgRUhSMi0uLT5OQVZcbiAgICBzdHlsZSBFSFIxIGZpbGw6IzU0OTlDNyxzdHJva2U6IzMzM1xuICAgIHN0eWxlIE5BViBmaWxsOiNFNzRDM0Msc3Ryb2tlOiMzMzMiLCJtZXJtYWlkIjoie1xuICBcInRoZW1lXCI6IFwiZGVmYXVsdFwiXG59IiwidXBkYXRlRWRpdG9yIjpmYWxzZSwiYXV0b1N5bmMiOnRydWUsInVwZGF0ZURpYWdyYW0iOmZhbHNlfQ"><img src="https://mermaid.ink/img/eyJjb2RlIjoiZmxvd2NoYXJ0ICBcbiAgICBzdWJncmFwaCBOQVZcbiAgICBkaXJlY3Rpb24gTFJcbiAgICB5MS0tPnxGSElSIFJFU1RmdWx8eTJcbiAgICB5MS0tPnxLYWZrYXx5M1xuICAgIGVuZFxuICAgIHN1YmdyYXBoIEVIUjJcbiAgICB6Mi0tPnoxXG4gICAgejEtLT58cHJvcHJpZXRhcnl8ejJcbiAgICB6My0tPnxvcGVuRUhSfHoyXG4gICAgZW5kXG4gICAgc3ViZ3JhcGggRUhSMVxuICAgIGRpcmVjdGlvbiBMUlxuICAgIHgxLS0-eDJcbiAgICB4Mi0tPnxGSElSIFJFU1RmdWx8eDNcbiAgICB4My0tPngyXG4gICAgeDQtLT58cHJvcHJpZXRhcnl8eDNcbiAgICBlbmRcbiAgICBFSFIxLS4gRkhJUiBNZXNzYWdpbmcgLi0-TkFWXG4gICAgTkFWLS4tPkVIUjFcbiAgICBOQVYtLiBGSElSIE1lc3NhZ2luZyAuLT5FSFIyXG4gICAgRUhSMi0uLT5OQVZcbiAgICBzdHlsZSBFSFIxIGZpbGw6IzU0OTlDNyxzdHJva2U6IzMzM1xuICAgIHN0eWxlIE5BViBmaWxsOiNFNzRDM0Msc3Ryb2tlOiMzMzMiLCJtZXJtYWlkIjp7InRoZW1lIjoiZGVmYXVsdCJ9LCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9" alt="" /></a></p>
+
+<h3 id="workflow">Workflow</h3>
+<p>The FHIR Messaging pattern does not describe <em>how</em> messages should be transferred. This can be done using Kafka, MQ, FTP, file-store, email, HTTP (including FHIR RESTful API) or any other current or future protocol. Messaging is also not limited to using a single protocol: the same message can be available on multiple channels or be passed through multiple protocols before arriving at the destination.</p>
+
+<p>A simple and powerful way to exchange messages is to simply provide two endpoints: Publish and Retrieve. The <a href="https://www.hl7.org/fhir/messaging.html#process">specification</a> contains examples of this using the FHIR RESTful API; Publish can be implemented as either <code class="language-plaintext highlighter-rouge">POST: {base}/$process-message</code> or <code class="language-plaintext highlighter-rouge">POST: {base}/Bundle</code>, and retrieval can be implemented as <code class="language-plaintext highlighter-rouge">GET: {base}/Bundle</code>. There is a choice between using $process-message and Bundle for publish; NAV is leaning towards the former due to it already being used by <a href="http://build.fhir.org/ig/HL7/davinci-alerts/branches/master/guidance.html">Da-Vinci project</a> and <a href="https://simplifier.net/guide/DigitalMedicines/process-message">NHS Digital</a>.</p>
+
+<p>HTTP and REST as a message\event exchange protocol might be perceived by some as “old fashion”, but it is a well established protocol that all developers should be familiar with and serves well as a common denominator. Integrators are still able to forward the messages to whatever internal event-streaming technology they prefer.</p>
+
+<h4 id="figure-2">Figure 2</h4>
+<p><a href="https://mermaid-js.github.io/mermaid-live-editor/edit/#eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgcmVjdCByZ2JhKDAsIDI1NSwgMCwgLjEpXG4gICAgbG9vcCBwZXJpb2RpYyBwb2xsaW5nXG4gICAgRUhSLT4-TkFWOiBHRVQgL0J1bmRsZT9tZXNzYWdlLmRlc3RpbmF0aW9uLXVyaT17aGVyLWlkfSZfb2Zmc2V0PXtvZmZzZXR9XG4gICAgTkFWLT4-RUhSOiBTZWFyY2hSZXN1bHRzW01lc3NhZ2VdXG4gICAgZW5kXG4gICAgZW5kXG5cbiAgICByZWN0IHJnYmEoMjU1LCAwLCAwLCAuMSlcbiAgICBFSFItPj5OQVY6IFBPU1QgLyRwcm9jZXNzLW1lc3NhZ2VcbiAgICBOQVYtPj5FSFI6IDIwMiBBY2NlcHRlZFxuICAgIGVuZCIsIm1lcm1haWQiOiJ7XG4gIFwidGhlbWVcIjogXCJkZWZhdWx0XCJcbn0iLCJ1cGRhdGVFZGl0b3IiOmZhbHNlLCJhdXRvU3luYyI6dHJ1ZSwidXBkYXRlRGlhZ3JhbSI6ZmFsc2V9"><img src="https://mermaid.ink/img/eyJjb2RlIjoic2VxdWVuY2VEaWFncmFtXG4gICAgcmVjdCByZ2JhKDAsIDI1NSwgMCwgLjEpXG4gICAgbG9vcCBwZXJpb2RpYyBwb2xsaW5nXG4gICAgRUhSLT4-TkFWOiBHRVQgL0J1bmRsZT9tZXNzYWdlLmRlc3RpbmF0aW9uLXVyaT17aGVyLWlkfSZfb2Zmc2V0PXtvZmZzZXR9XG4gICAgTkFWLT4-RUhSOiBTZWFyY2hSZXN1bHRzW01lc3NhZ2VdXG4gICAgZW5kXG4gICAgZW5kXG5cbiAgICByZWN0IHJnYmEoMjU1LCAwLCAwLCAuMSlcbiAgICBFSFItPj5OQVY6IFBPU1QgLyRwcm9jZXNzLW1lc3NhZ2VcbiAgICBOQVYtPj5FSFI6IDIwMiBBY2NlcHRlZFxuICAgIGVuZCIsIm1lcm1haWQiOnsidGhlbWUiOiJkZWZhdWx0In0sInVwZGF0ZUVkaXRvciI6ZmFsc2UsImF1dG9TeW5jIjp0cnVlLCJ1cGRhdGVEaWFncmFtIjpmYWxzZX0" alt="" /></a></p>
+
+<h3 id="polling-vs-pushing">Polling vs. Pushing</h3>
+<p>Polling is often simpler to implement and test than a Push-based exchange, especially when reliability, throttling and retries are taken into consideration.</p>
+
+<p>NAV foresee a FHIR RESTful compliant service with the ability to query messages using <a href="https://www.hl7.org/fhir/bundle.html#search">Bundle search parameters</a>. These messages are represented as a long list of immutable messages ordered from first to last that can be paginated using an offset parameter. Clients can then consume messages at their own pace and even “replay” old messages, new messages are awaited by continuously poll with an offset equal the last entry, this pattern is similar to interacting with a Kafka partition.</p>
+
+<h3 id="addressing-her-id">Addressing (HER-id)</h3>
+<p>FHIR Messaging requires a way to identify a message’s <em>source</em> and <em>destination</em> endpoints. These endpoints can be either a protocol-specific endpoint, such as a HTTP URL or email-address, or an identifier used to identify a logical entity without specifying <em>how</em> the message should be delivered.</p>
+
+<p>In order to be technology agnostic, the message-model must be separated from the transfer-protocol. This allows a message to be routed unmodified through multiple intermediates and protocols before arriving at the destination.</p>
+
+<p>In Norway we already have an established standard to identify communicating entities within the health sector called <a href="https://www.ehelse.no/standardisering/om-standardisering-i-e-helse/tjenestebasert-adressering#Om%20tjenestebasert%20adressering%20og%20tjenestetyper">Tjenestebasert adressering</a>. This standard does not force any particular transfer-protocol and can therefore be used to identify <em>source</em> and <em>destination</em> as logical entities in a FHIR message. Such an identifier is called <em>HER-id</em> and shall be populated in the required message elements: <code class="language-plaintext highlighter-rouge">source.endpoint</code> and <code class="language-plaintext highlighter-rouge">destination.endpoint</code>. Because these elements requires an URI we use HER-id’s <a href="https://www.ehelse.no/teknisk-dokumentasjon/oid-identifikatorserier-i-helse-og-omsorgstjenesten">reserved OID namespace</a> to create a fully-qualified URI, example:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"destination"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"endpoint"</span><span class="p">:</span><span class="w"> </span><span class="s2">"urn:oid:2.16.578.1.12.4.1.2.102287"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
 
 
 
@@ -189,7 +238,7 @@ h6:before{color:silver;counter-increment:more-detail;content:var(--heading-prefi
 
       <div class="inner-wrapper">
         <p>
-          IG &#169; 2021+ <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/navikt/fhir">Norwegian Labour and Welfare Administration (NAV)</a>.  Package nav.no.messaging.core.r4#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Thu, Oct 7, 2021 15:21+0000">2021-10-07</span>
+          IG &#169; 2021+ <a style="color:var(--footer-hyperlink-text-color)" href="https://github.com/navikt/fhir">Norwegian Labour and Welfare Administration (NAV)</a>.  Package nav.no.messaging.core.r4#0.1.0 based on <a style="color: var(--footer-hyperlink-text-color)" href="http://hl7.org/fhir/R4/">FHIR 4.0.1</a>. Generated <span title="Fri, Oct 8, 2021 12:25+0000">2021-10-08</span>
           <br/>
           <span style="color: var(--footer-highlight-text-color)"></span>
                       Links: <a style="color: var(--footer-hyperlink-text-color)" href="toc.html">Table of Contents</a> |
