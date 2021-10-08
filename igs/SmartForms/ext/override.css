@@ -235,6 +235,22 @@ pre {
   border: none;
 }
 
+pre *, code {
+  text-shadow: none!important;
+  font-family: "Roboto Mono", SFMono-Regular, Consolas, Menlo, monospace !important;
+}
+
+p > code {
+  font-size: 14px!important;
+  border-radius: 2px!important;
+  color: rgb(213, 215, 226) !important;
+  background-color: rgb(33, 34, 44) !important;
+  padding-left: 4px!important;
+  padding-right: 4px!important;
+  line-height: 22px!important;
+
+}
+
 .ui-widget-header {
   border: none;
 }
