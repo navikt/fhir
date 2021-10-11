@@ -3,7 +3,7 @@
 
 err = 1, warn = 0, info = 0
 IG Publisher Version: 1.1.81
-Generated Mon Oct 11 14:55:35 UTC 2021. FHIR version 4.0.1 for no.nav.smartforms#0.1.0 (canonical = http://fhir.nav.no)
+Generated Mon Oct 11 22:21:52 UTC 2021. FHIR version 4.0.1 for no.nav.smartforms#0.1.0 (canonical = http://fhir.nav.no)
  Build Errors : 0 / 0 / 0
  /github/workspace/igs/SmartForms/fsh-generated/resources/ImplementationGuide-no.nav.smartforms : 1 / 0 / 1
 </table>
