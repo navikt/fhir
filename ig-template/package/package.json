@@ -4,8 +4,8 @@
   "type": "fhir.template",
   "license": "CC0-1.0",
   "description": "NAV FHIR Template",
-	"base": "fhir.base.template",
-	"dependencies": {
-		"fhir.base.template": "current"
-	}
+  "base": "fhir.base.template",
+  "dependencies": {
+    "fhir.base.template": "current"
+  }
 }
