@@ -4,9 +4,9 @@
     <description>New Packages published by NAV</description>
     <link>https://navikt.github.io/fhir/package-feed.xml</link>
     <generator>HL7, Inc FHIR Publication tooling</generator>
-    <lastBuildDate>Tue, 14 Sep 2021 10:20:39 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 12 Oct 2021 13:51:38 GMT</lastBuildDate>
     <atom:link href="https://navikt.github.io/fhir/package-feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 14 Sep 2021 10:20:39 GMT</pubDate>
+    <pubDate>Tue, 12 Oct 2021 13:51:38 GMT</pubDate>
     <language>en</language>
     <ttl>600</ttl>
     <item>
