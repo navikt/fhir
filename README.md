@@ -61,7 +61,7 @@ NPM tasks kan kjøres vha. en terminal eller gjennom vscode, følgende tasks er 
 - build:docker: Bygger docker-imaget som brukes for kjøre IG-publisher.
 - build:ig: Kjører IG Publisher vha. docker-imaget bygd av *build:docker*.
 - build:package-feed: Genererer *package-feed.xml* vha. liquid template og GitHub releases API.
-- build:sushi : Transformerer FSH filer to FHIR json ressurser.
+- build\:sushi\: Transformerer FSH filer til FHIR json ressurser.
 - clean: Sletter genererte filer.
 - test: Kjører tester som verifiserer at FHIR Validering av test ressurser vha. IG gir forventet resultat.
 - validate: Validerer FHIR ressursene som inngår i IG-en.
