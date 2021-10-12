@@ -52,6 +52,27 @@ Når nevnte kriterier er oppfyllt vil en ny repository-release lages og [package
 # Development
 For å bygge IG-er lokalt trenger du SUSHI, IG Publisher og alle avhengighetene. Dette kan du installere ved å følge de respektive installasjonsveiledningene, alternativt kan du bruke et docker-image, isåfall må du installere [Docker](https://docs.docker.com/get-docker/).
 
+## 🖥️ NPM Tasks
+Det er en `package.json` som inkluderer dependencies og pre-definerte skript for å automatisere vanlige oppgaver som: bygg, test, validate, clean++. Disse skriptene skal fungere på både linux, osx og windows.
+
+Sørg først for å installere [JDK (>1.8)](https://adoptopenjdk.net/installation.html) samt [Node](https://nodejs.org/en/). Deretter åpner du et terminalvindu i root-katalogen og kjør `npm ci`, dette installere alle node-modules samt laster ned nødvendige .jar filer.
+
+NPM tasks kan kjøres vha. en terminal eller gjennom vscode, følgende tasks er definert:
+- build:docker: Bygger docker-imaget som brukes for kjøre IG-publisher.
+- build:ig: Kjører IG Publisher vha. docker-imaget bygd av *build:docker*.
+- build:package-feed: Genererer *package-feed.xml* vha. liquid template og GitHub releases API.
+- build:sushi: Transformerer FSH filer to FHIR json ressurser.
+- clean: Sletter genererte filer.
+- test: Kjører tester som verifiserer at FHIR Validering av test ressurser vha. IG gir forventet resultat.
+- validate: Validerer FHIR ressursene som inngår i IG-en.
+
+Eksempel på kjøring av en NPM-task:
+```
+npm run validate
+```
+
+Flere av task-ene kjører mot en IG. For å velge IG må du editere `.npmrc` filen.
+
 ## 👨‍💻 Visual Studio Code
 For utvikling av IG-er er det greit å bruke [vscode](https://code.visualstudio.com/).
 
@@ -59,12 +80,12 @@ For utvikling av IG-er er det greit å bruke [vscode](https://code.visualstudio.
 
 Vi har lagt til FHIR json-schema referanse i [.vscode/settings.json](.vscode/settings.json) slik at du får IntelliSense dersom du jobber med FHIR json-ressurser direkte.
 
-Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IG-en, disse vil automatisk bygge docker-imaget dersom det ikke allerede finnes, dette tar noen minutter. For å kjøre en task må du ha åpen **ig.ini** filen til FSH-prosjektet du jobber med. SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre task-ene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
+Det er laget egne tasks i [.vscode/tasks.json](.vscode/tasks.json) som kan brukes for å bygge og teste IG-en, SUSHI er registrert som en bygg-task og kan dermed kjøres vha. **ctrl+shift+b** hurtigtast, de andre task-ene kan du velge ved å trykke **F1** og deretter skrive **Tasks: Run task**.
 
 ![how to run tasks gif](docs/run-task.gif)
 
 ## 🐋 Docker build image
-Denne seksjonen trenger du ikke forholde deg til dersom du bruker Tasks i vscode.
+Denne seksjonen trenger du ikke forholde deg til dersom du bruker Tasks i npm eller vscode.
 
 Fordi transformeringen av et FSH-prosjekt til en IG krever mange dependencies (java, nodejs, npm, ruby, jekyll, sushi, ig-publisher etc.) har vi laget en Dockerfile for å bygge et docker-image som inneholder både SUSHI, IG Publisher og [FHIR Validator](https://confluence.hl7.org/display/FHIR/Using+the+FHIR+Validator) + alle nødvendige dependencies. 
 

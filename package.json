@@ -1,10 +1,23 @@
 {
   "scripts": {
-    "start": "http-server -a localhost -p 5052 igs/MessagingCore/output",
-    "watch": "syncdir --watch ig-template/content/ext/ igs/MessagingCore/output/ext"
+    "build:docker": "cross-var docker build -t $npm_config_dockerImage .docker",
+    "build:ig": "cross-var docker run -it --rm -v package-cache:/root/.fhir -v $INIT_CWD/ig-template:/ig-template:ro -v $INIT_CWD/igs/$npm_config_ig:/data/ig $npm_config_dockerImage publisher -ig /data/ig/ig.ini",
+    "build:package-feed": "node scripts/build-package-feed.js",
+    "build:sushi": "cross-var sushi igs/$npm_config_ig",
+    "clean": "node scripts/clean.js",
+    "postinstall": "node scripts/download-jars.js",
+    "start": "cross-var http-server -a localhost -p 5052 igs/$npm_config_ig/output",
+    "test": "cross-var java -jar libs/junit-platform-console-standalone-1.8.1.jar -cp libs/fhir-validator-junit-engine.jar:libs/validator_cli.jar -e fhir-validator-junit-engine -f igs/$npm_config_ig/test/*test.yaml",
+    "validate": "cross-var java -jar libs/validator_cli.jar igs/$npm_config_ig/fsh-generated/resources -version 4.0 -tx n/a",
+    "watch": "cross-var syncdir --watch ig-template/content/ext/ igs/$npm_config_ig/output/ext"
   },
   "devDependencies": {
+    "cross-var": "^1.1.0",
+    "download": "^8.0.0",
+    "fsh-sushi": "2.1.1",
+    "glob": "^7.2.0",
     "http-server": "^13.0.2",
+    "liquidjs": "^9.28.0",
     "sync-directory": "^2.2.22"
   }
 }

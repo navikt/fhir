@@ -4,20 +4,18 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "Build docker-image",
-      "type": "shell",
-      "command": "docker build -t navikt/fhir-ig-dev ${workspaceFolder}/.docker",
+      "type": "npm",
+      "script": "build:ig",
       "presentation": {
         "clear": true
       },
       "problemMatcher": []
     },
     {
-      "label": "SUSHI",
-      "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data navikt/fhir-ig-dev sushi /data",
+      "type": "npm",
+      "script": "test",
       "group": {
-        "kind": "build",
+        "kind": "test",
         "isDefault": true
       },
       "presentation": {
@@ -26,43 +24,69 @@
       "problemMatcher": []
     },
     {
-      "label": "Test",
-      "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/igs:/data:ro navikt/fhir-ig-dev test -f /data/*/test/*.yaml",
-      "group": "test",
-      "presentation": {
-        "clear": true
-      },
-      "problemMatcher": []
+      "type": "npm",
+      "script": "clean",
+      "problemMatcher": [],
     },
     {
-      "label": "Validator",
-      "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${fileDirname}:/data:ro navikt/fhir-ig-dev validator /data/fsh-generated/resources -ig /data/fsh-generated/resources -version 4.0",
+      "type": "npm",
+      "script": "build:sushi",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "presentation": {
         "clear": true
       },
-      "problemMatcher": []
+      "problemMatcher": [
+        {
+          "source": "SUSHI",
+          "fileLocation": "absolute",
+          "pattern": [
+            {
+              "regexp": "^(warn|error) (.+)$",
+              "severity": 1,
+              "message": 2
+            },
+            {
+              "regexp": "^  File: (.+)$",
+              "file": 1
+            },
+            {
+              "regexp": "^  Line: (\\d+)$",
+              "line": 1
+            }
+          ]
+        }
+      ]
     },
     {
-      "label": "IG Publisher",
-      "type": "shell",
-      "command": "docker run -it --rm -v package-cache:/root/.fhir -v ${workspaceFolder}/ig-template:/ig-template:ro -v ${fileDirname}:/data/ig navikt/fhir-ig-dev publisher -ig /data/ig/ig.ini",
+      "type": "npm",
+      "script": "validate",
       "presentation": {
         "clear": true
       },
-      "problemMatcher": []
+      "problemMatcher": [
+        {
+          "source": "FHIR Validator",
+          "pattern": [
+            {
+              "regexp": "^-- (.+) -{5,}$",
+              "file": 1
+            },
+            {
+              "regexp": "^.*$"
+            },
+            {
+              "regexp": "^  ((?:Info|Warning|Error)).* \\(line ?(\\d+), col ?(\\d+)\\) : (.+)$",
+              "severity": 1,
+              "line": 2,
+              "message": 4,
+              "loop": true
+            }
+          ]
+        }
+      ]
     },
-    {
-      "label": "Clean",
-      "type": "shell",
-      "windows": {
-        "command": "rm -recurse ${workspaceFolder}\\igs\\*\\fsh-generated, ${workspaceFolder}\\igs\\*\\input-cache, ${workspaceFolder}\\igs\\*\\output, ${workspaceFolder}\\igs\\*\\temp, ${workspaceFolder}\\igs\\*\\template"
-      },
-      "presentation": {
-        "clear": true
-      },
-      "problemMatcher": []
-    }
   ]
 }
