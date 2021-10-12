@@ -15,7 +15,7 @@ jobs:
       # Creates a new package-feed.xml from releases using the Liquid template.
       - name: 📃 Create package feed
         run: |
-          npm install liquidjs
+          npm install -g liquidjs
           echo '{"releases":' > input.json
           wget -q -O - https://api.github.com/repos/navikt/fhir/releases >> input.json
           echo '}' >> input.json
